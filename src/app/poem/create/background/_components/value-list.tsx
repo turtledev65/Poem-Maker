@@ -4,6 +4,7 @@ import { ChangeEvent, useCallback, useContext } from "react";
 import { AppearanceContext } from "../_providers/appearance-provider";
 import ColorPicker from "./color-picker";
 import { Background } from "@/types";
+import { randomColor } from "@/util/color";
 
 const ValueList = () => {
   const { background } = useContext(AppearanceContext);
@@ -30,7 +31,7 @@ const AddButton = () => {
     setBackground(prev => {
       if (prev.type === "color") return {} as Background;
 
-      const newItem = { value: "#ffffff", percentage: 0 };
+      const newItem = { value: randomColor(), percentage: 0 };
       const values = [...prev.values, newItem];
 
       return { ...prev, values };
