@@ -5,7 +5,7 @@ import { safeParseJson } from "@/util/json";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function editPoem(formData: FormData) {
+export async function editPoemData(formData: FormData) {
   const data = {
     title: formData.get("title"),
     text: formData.get("text"),
@@ -22,7 +22,7 @@ export async function editPoem(formData: FormData) {
   }
 }
 
-export async function setPoemBackground(formData: FormData) {
+export async function editPoemAppearance(formData: FormData) {
   const cookieStore = await cookies();
   const newPoemStr = cookieStore.get("new-poem")?.value;
   if (!newPoemStr) return;

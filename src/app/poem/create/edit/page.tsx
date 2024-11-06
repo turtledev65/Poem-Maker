@@ -1,9 +1,9 @@
-import { editPoem } from "../actions";
+import { editPoemData } from "../actions";
 
 const EditPoem = () => {
   return (
     <main className="h-full">
-      <form action={editPoem} className="flex h-full flex-row gap-4 *:flex-1">
+      <form action={editPoemData} className="flex h-full flex-row gap-4 *:flex-1">
         <div className="flex h-full flex-col gap-2">
           <input
             placeholder="Title"

@@ -6,14 +6,14 @@ import ColorSettings from "./color-settings";
 import LinearGradientSettings from "./linear-gradient-settings";
 import RadialGradientSettings from "./radial-gradient-settings";
 import Link from "next/link";
-import { setPoemBackground } from "../../actions";
+import { editPoemAppearance } from "../../actions";
 import { Background, BackgroundType } from "@/types";
 import ColorPicker from "./color-picker";
 
 const Sidebar = () => {
   return (
     <form
-      action={setPoemBackground}
+      action={editPoemAppearance}
       className="absolute bottom-0 right-0 top-0 flex w-80 flex-col justify-between rounded-l-xl border-l-2 bg-white p-2"
     >
       <div>
