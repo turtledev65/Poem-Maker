@@ -1,12 +1,12 @@
 "use client";
 
 import { useContext } from "react";
-import { SettingsContext } from "../_providers/settings-provider";
+import { AppearanceContext } from "../_providers/appearance-provider";
 import ValueList from "./value-list";
 
 const LinearGradientSettings = () => {
-  const { settings, setSettings } = useContext(SettingsContext);
-  if (settings.type !== "linear-gradient") return null;
+  const { appearance, setAppearance } = useContext(AppearanceContext);
+  if (appearance.type !== "linear-gradient") return null;
 
   return (
     <>
@@ -16,9 +16,9 @@ const LinearGradientSettings = () => {
           type="number"
           min={0}
           max={360}
-          value={settings.angle}
+          value={appearance.angle}
           onChange={e =>
-            setSettings(prev => ({
+            setAppearance(prev => ({
               ...prev,
               angle: Number(e.target.value),
             }))

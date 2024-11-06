@@ -1,7 +1,7 @@
 "use cient";
 
 import { useContext } from "react";
-import { SettingsContext } from "../_providers/settings-provider";
+import { AppearanceContext } from "../_providers/appearance-provider";
 import ColorSettings from "./color-settings";
 import LinearGradientSettings from "./linear-gradient-settings";
 import RadialGradientSettings from "./radial-gradient-settings";
@@ -45,15 +45,15 @@ const Sidebar = () => {
 export default Sidebar;
 
 const TypeSetting = () => {
-  const { settings, setSettings } = useContext(SettingsContext);
+  const { appearance, setAppearance } = useContext(AppearanceContext);
 
   return (
     <div className="flex flex-row items-center justify-between gap-6">
       <p>Type</p>
       <select
-        value={settings.type}
+        value={appearance.type}
         onChange={e =>
-          setSettings(() =>
+          setAppearance(() =>
             getDefaultSettings(e.target.value as BackgroundType),
           )
         }
@@ -70,16 +70,16 @@ const TypeSetting = () => {
 };
 
 const FontColorSetting = () => {
-  const { settings, setSettings } = useContext(SettingsContext);
+  const { appearance, setAppearance } = useContext(AppearanceContext);
 
   return (
     <div className="flex flex-row items-center justify-between gap-6">
       <p>Font Color</p>
       <ColorPicker
-        value={settings.fontColor}
+        value={appearance.fontColor}
         name="font-color"
         onChange={e =>
-          setSettings(prev => ({ ...prev, fontColor: e.target.value }))
+          setAppearance(prev => ({ ...prev, fontColor: e.target.value }))
         }
       />
     </div>
@@ -87,11 +87,11 @@ const FontColorSetting = () => {
 };
 
 const SettingsFields = () => {
-  const { settings } = useContext(SettingsContext);
+  const { appearance } = useContext(AppearanceContext);
 
-  if (settings.type === "color") {
+  if (appearance.type === "color") {
     return <ColorSettings />;
-  } else if (settings.type === "linear-gradient") {
+  } else if (appearance.type === "linear-gradient") {
     return <LinearGradientSettings />;
   } else {
     return <RadialGradientSettings />;

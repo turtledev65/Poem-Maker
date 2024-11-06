@@ -1,8 +1,8 @@
 "use client";
 
-import SettingsProvider, {
-  SettingsContext,
-} from "./_providers/settings-provider";
+import AppearanceProvider, {
+  AppearanceContext,
+} from "./_providers/appearance-provider";
 import Sidebar from "./_components/sidebar";
 import { useContext } from "react";
 import BaseBackground from "../../_components/background";
@@ -10,16 +10,16 @@ import BaseBackground from "../../_components/background";
 const BackgroundPage = () => {
   return (
     <main>
-      <SettingsProvider>
+      <AppearanceProvider>
         <Background />
         <Sidebar />
-      </SettingsProvider>
+      </AppearanceProvider>
     </main>
   );
 };
 export default BackgroundPage;
 
 const Background = () => {
-  const { settings } = useContext(SettingsContext);
-  return <BaseBackground settings={settings} />;
+  const { appearance } = useContext(AppearanceContext);
+  return <BaseBackground settings={appearance} />;
 };
