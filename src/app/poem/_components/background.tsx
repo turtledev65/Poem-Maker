@@ -1,6 +1,6 @@
 "use client";
 
-import { CSSProperties, useEffect, useMemo } from "react";
+import { CSSProperties, useMemo } from "react";
 import { Background as BackgroundType } from "@/types";
 
 const Background = ({ appearance }: { appearance: BackgroundType }) => {
@@ -20,10 +20,6 @@ const Background = ({ appearance }: { appearance: BackgroundType }) => {
         return {};
     }
   }, [appearance]);
-
-  useEffect(() => {
-    console.log("Background Rendered",appearance);
-  });
 
   return <div className="absolute inset-0 -z-10" style={styles} />;
 };
