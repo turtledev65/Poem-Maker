@@ -3,7 +3,7 @@
 import { CSSProperties, useMemo } from "react";
 import { Background as BackgroundType } from "@/types";
 
-const Background = ({settings}: {settings: BackgroundType}) => {
+const Background = ({ settings }: { settings: BackgroundType }) => {
   const styles = useMemo<CSSProperties>(() => {
     switch (settings.type) {
       case "color":
