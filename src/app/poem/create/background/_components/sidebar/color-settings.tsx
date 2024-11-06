@@ -1,8 +1,8 @@
 "use context";
 
 import { useContext } from "react";
-import ColorPicker from "./color-picker";
-import { AppearanceContext } from "../_providers/appearance-provider";
+import ColorPicker from "../color-picker";
+import { AppearanceContext } from "../../_providers/appearance-provider";
 
 const ColorSettings = () => {
   const { appearance, setAppearance } = useContext(AppearanceContext);

@@ -1,6 +1,6 @@
 "use client";
 
-import ValueList from "./value-list";
+import ValueList from "../value-list";
 
 const RadialGradientSettings = () => {
   return <ValueList />;

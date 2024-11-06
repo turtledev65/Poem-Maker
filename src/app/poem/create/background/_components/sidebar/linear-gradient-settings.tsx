@@ -1,8 +1,8 @@
 "use client";
 
 import { useContext } from "react";
-import { AppearanceContext } from "../_providers/appearance-provider";
-import ValueList from "./value-list";
+import { AppearanceContext } from "../../_providers/appearance-provider";
+import ValueList from "../value-list";
 
 const LinearGradientSettings = () => {
   const { appearance, setAppearance } = useContext(AppearanceContext);
