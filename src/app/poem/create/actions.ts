@@ -30,10 +30,13 @@ export async function setPoemBackground(formData: FormData) {
   const newPoem = safeParseJson<Poem>(newPoemStr);
   if (!newPoem) return;
 
-  const backgroundType = formData.get("background-type");
-  if (!backgroundType) return;
+  const type = formData.get("background-type");
+  if (!type) return;
 
-  const background = { type: backgroundType } as Background;
+  const fontColor = formData.get("font-color");
+  if (!fontColor) return;
+
+  const background = { type, fontColor } as Background;
   switch (background.type) {
     case "color":
       const value = formData.get("value");
