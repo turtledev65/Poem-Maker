@@ -1,6 +1,12 @@
 "use server";
 
-import { Background, BackgroundColorValue, Poem } from "@/types";
+import {
+  Appearance,
+  Background,
+  BackgroundColorValue,
+  Foreground,
+  Poem,
+} from "@/types";
 import { safeParseJson } from "@/util/json";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -33,8 +39,14 @@ export async function editPoemAppearance(formData: FormData) {
   const type = formData.get("background-type");
   if (!type) return;
 
-  const fontColor = formData.get("font-color");
-  if (!fontColor) return;
+  const appearance = {} as Appearance;
+
+  const foreground = {
+    title: formData.get("title-color"),
+    poem: formData.get("poem-color"),
+  } as Foreground;
+  if (!foreground.title || !foreground.poem) return;
+  appearance.foreground = foreground;
 
   const background = { type } as Background;
   switch (background.type) {
@@ -72,8 +84,9 @@ export async function editPoemAppearance(formData: FormData) {
       background.values = values;
       break;
   }
+  appearance.background = background;
 
-  newPoem.appearance.background = background;
+  newPoem.appearance = appearance;
   cookieStore.set("new-poem", JSON.stringify(newPoem));
 
   redirect("/poem/create/preview");

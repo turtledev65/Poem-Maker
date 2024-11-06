@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { editPoemAppearance } from "../../../actions";
 import BackgroundSettings from "./background-settings";
+import ForegroundSettings from "./foreground-settings";
 
 const Sidebar = () => {
   return (
@@ -10,6 +11,7 @@ const Sidebar = () => {
       action={editPoemAppearance}
       className="absolute bottom-0 right-0 top-0 flex w-80 flex-col justify-between rounded-l-xl border-l-2 bg-white p-2"
     >
+      <ForegroundSettings />
       <BackgroundSettings />
 
       <div className="flex gap-2">
