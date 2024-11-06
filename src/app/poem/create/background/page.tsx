@@ -21,5 +21,5 @@ export default BackgroundPage;
 
 const Background = () => {
   const { appearance } = useContext(AppearanceContext);
-  return <BaseBackground settings={appearance} />;
+  return <BaseBackground appearance={appearance.background} />;
 };

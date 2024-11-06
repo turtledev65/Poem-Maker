@@ -2,7 +2,6 @@
 
 import { useContext } from "react";
 import { AppearanceContext } from "../../_providers/appearance-provider";
-import ColorPicker from "../color-picker";
 import ColorSettings from "./color-settings";
 import LinearGradientSettings from "./linear-gradient-settings";
 import RadialGradientSettings from "./radial-gradient-settings";
@@ -14,7 +13,6 @@ const BackgroundSettings = () => {
       <h1 className="mb-4 text-3xl font-bold">Background</h1>
       <div className="flex flex-col gap-3">
         <TypeSetting />
-        <FontColorSetting />
         <SettingsFields />
       </div>
     </div>
@@ -22,29 +20,12 @@ const BackgroundSettings = () => {
 };
 export default BackgroundSettings;
 
-const FontColorSetting = () => {
-  const { appearance, setAppearance } = useContext(AppearanceContext);
-
-  return (
-    <div className="flex flex-row items-center justify-between gap-6">
-      <p>Font Color</p>
-      <ColorPicker
-        value={appearance.fontColor}
-        name="font-color"
-        onChange={e =>
-          setAppearance(prev => ({ ...prev, fontColor: e.target.value }))
-        }
-      />
-    </div>
-  );
-};
-
 const SettingsFields = () => {
-  const { appearance } = useContext(AppearanceContext);
+  const { background } = useContext(AppearanceContext);
 
-  if (appearance.type === "color") {
+  if (background.type === "color") {
     return <ColorSettings />;
-  } else if (appearance.type === "linear-gradient") {
+  } else if (background.type === "linear-gradient") {
     return <LinearGradientSettings />;
   } else {
     return <RadialGradientSettings />;
@@ -52,15 +33,15 @@ const SettingsFields = () => {
 };
 
 const TypeSetting = () => {
-  const { appearance, setAppearance } = useContext(AppearanceContext);
+  const { background, setBackground } = useContext(AppearanceContext);
 
   return (
     <div className="flex flex-row items-center justify-between gap-6">
       <p>Type</p>
       <select
-        value={appearance.type}
+        value={background.type}
         onChange={e =>
-          setAppearance(() =>
+          setBackground(() =>
             getDefaultSettings(e.target.value as BackgroundType),
           )
         }
@@ -79,18 +60,16 @@ const TypeSetting = () => {
 function getDefaultSettings(type: BackgroundType) {
   switch (type) {
     case "color":
-      return { type, fontColor: "#000000", value: "#ffffff" } as Background;
+      return { type, value: "#ffffff" } as Background;
     case "linear-gradient":
       return {
         type,
-        fontColor: "#000000",
         values: [],
         angle: 90,
       } as Background;
     case "radial-gradient":
       return {
         type,
-        fontColor: "#000000",
         values: [],
       } as Background;
     default:

@@ -10,8 +10,12 @@ const PreviewPage = async () => {
 
   return (
     <main className="flex h-full flex-row gap-4">
-      <Background settings={poem.background} />
-      <Poem title={poem.title} text={poem.text} fontColor={poem.background.fontColor} />
+      <Background appearance={poem.appearance.background} />
+      <Poem
+        title={poem.title}
+        text={poem.text}
+        appearance={poem.appearance.foreground}
+      />
     </main>
   );
 };

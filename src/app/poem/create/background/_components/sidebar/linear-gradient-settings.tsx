@@ -5,8 +5,8 @@ import { AppearanceContext } from "../../_providers/appearance-provider";
 import ValueList from "../value-list";
 
 const LinearGradientSettings = () => {
-  const { appearance, setAppearance } = useContext(AppearanceContext);
-  if (appearance.type !== "linear-gradient") return null;
+  const { background, setBackground } = useContext(AppearanceContext);
+  if (background.type !== "linear-gradient") return null;
 
   return (
     <>
@@ -16,9 +16,9 @@ const LinearGradientSettings = () => {
           type="number"
           min={0}
           max={360}
-          value={appearance.angle}
+          value={background.angle}
           onChange={e =>
-            setAppearance(prev => ({
+            setBackground(prev => ({
               ...prev,
               angle: Number(e.target.value),
             }))

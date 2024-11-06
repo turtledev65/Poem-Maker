@@ -36,7 +36,7 @@ export async function editPoemAppearance(formData: FormData) {
   const fontColor = formData.get("font-color");
   if (!fontColor) return;
 
-  const background = { type, fontColor } as Background;
+  const background = { type } as Background;
   switch (background.type) {
     case "color":
       const value = formData.get("value");
@@ -73,7 +73,7 @@ export async function editPoemAppearance(formData: FormData) {
       break;
   }
 
-  newPoem.background = background;
+  newPoem.appearance.background = background;
   cookieStore.set("new-poem", JSON.stringify(newPoem));
 
   redirect("/poem/create/preview");

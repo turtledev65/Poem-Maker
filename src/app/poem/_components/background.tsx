@@ -1,25 +1,29 @@
 "use client";
 
-import { CSSProperties, useMemo } from "react";
+import { CSSProperties, useEffect, useMemo } from "react";
 import { Background as BackgroundType } from "@/types";
 
-const Background = ({ settings }: { settings: BackgroundType }) => {
+const Background = ({ appearance }: { appearance: BackgroundType }) => {
   const styles = useMemo<CSSProperties>(() => {
-    switch (settings.type) {
+    switch (appearance.type) {
       case "color":
-        return { background: settings.value };
+        return { background: appearance.value };
       case "linear-gradient":
         return {
-          background: `linear-gradient(${settings.angle}deg, ${getColors(settings)})`,
+          background: `linear-gradient(${appearance.angle}deg, ${getColors(appearance)})`,
         };
       case "radial-gradient":
         return {
-          background: `radial-gradient(circle, ${getColors(settings)})`,
+          background: `radial-gradient(circle, ${getColors(appearance)})`,
         };
       default:
         return {};
     }
-  }, [settings]);
+  }, [appearance]);
+
+  useEffect(() => {
+    console.log("Background Rendered",appearance);
+  });
 
   return <div className="absolute inset-0 -z-10" style={styles} />;
 };

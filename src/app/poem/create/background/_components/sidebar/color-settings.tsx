@@ -5,17 +5,17 @@ import ColorPicker from "../color-picker";
 import { AppearanceContext } from "../../_providers/appearance-provider";
 
 const ColorSettings = () => {
-  const { appearance, setAppearance } = useContext(AppearanceContext);
-  if (appearance.type !== "color") return null;
+  const { background, setBackground } = useContext(AppearanceContext);
+  if (background.type !== "color") return null;
 
   return (
     <div className="flex flex-row items-center justify-between">
       <p>Value</p>
       <ColorPicker
-        value={appearance.value}
+        value={background.value}
         name="value"
         onChange={e =>
-          setAppearance(prev => ({ ...prev, value: e.target.value }))
+          setBackground(prev => ({ ...prev, value: e.target.value }))
         }
       />
     </div>

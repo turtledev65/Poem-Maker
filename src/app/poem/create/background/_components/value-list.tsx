@@ -6,14 +6,14 @@ import ColorPicker from "./color-picker";
 import { Background } from "@/types";
 
 const ValueList = () => {
-  const { appearance } = useContext(AppearanceContext);
-  if (appearance.type === "color") return null;
+  const { background } = useContext(AppearanceContext);
+  if (background.type === "color") return null;
 
   return (
     <div className="flex flex-col">
       <p>Values</p>
       <div className="flex flex-col">
-        {appearance.values.map((_, idx) => (
+        {background.values.map((_, idx) => (
           <ColorOption idx={idx} key={idx} />
         ))}
         <AddButton />
@@ -24,10 +24,10 @@ const ValueList = () => {
 export default ValueList;
 
 const AddButton = () => {
-  const { setAppearance } = useContext(AppearanceContext);
+  const { setBackground } = useContext(AppearanceContext);
 
   const handleAddItem = useCallback(() => {
-    setAppearance(prev => {
+    setBackground(prev => {
       if (prev.type === "color") return {} as Background;
 
       const newItem = { value: "#ffffff", percentage: 0 };
@@ -35,7 +35,7 @@ const AddButton = () => {
 
       return { ...prev, values };
     });
-  }, [setAppearance]);
+  }, [setBackground]);
 
   return (
     <button
@@ -52,16 +52,16 @@ type RemoveButtonProps = {
   idx: number;
 };
 const RemoveButton = ({ idx }: RemoveButtonProps) => {
-  const { setAppearance } = useContext(AppearanceContext);
+  const { setBackground } = useContext(AppearanceContext);
 
   const handleRemoveItem = useCallback(() => {
-    setAppearance(prev => {
+    setBackground(prev => {
       if (prev.type === "color") return {} as Background;
       const values = [...prev.values];
       values.splice(idx, 1);
       return { ...prev, values };
     });
-  }, [setAppearance, idx]);
+  }, [setBackground, idx]);
 
   return (
     <button
@@ -76,11 +76,11 @@ const RemoveButton = ({ idx }: RemoveButtonProps) => {
 
 type ColorOptionProps = { idx: number };
 const ColorOption = ({ idx }: ColorOptionProps) => {
-  const { appearance, setAppearance } = useContext(AppearanceContext);
+  const { background, setBackground } = useContext(AppearanceContext);
 
   const handleChangeColor = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      setAppearance(prev => {
+      setBackground(prev => {
         if (prev.type === "color") return {} as Background;
 
         const values = [...prev.values];
@@ -88,12 +88,12 @@ const ColorOption = ({ idx }: ColorOptionProps) => {
         return { ...prev, values };
       });
     },
-    [setAppearance, idx],
+    [setBackground, idx],
   );
 
   const handleChangePercentage = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      setAppearance(prev => {
+      setBackground(prev => {
         if (prev.type === "color") return {} as Background;
 
         const values = [...prev.values];
@@ -101,15 +101,15 @@ const ColorOption = ({ idx }: ColorOptionProps) => {
         return { ...prev, values };
       });
     },
-    [setAppearance, idx],
+    [setBackground, idx],
   );
 
   return (
     <div className="my-1 flex justify-between">
-      {appearance.type !== "color" && (
+      {background.type !== "color" && (
         <>
           <ColorPicker
-            value={appearance.values[idx].value}
+            value={background.values[idx].value}
             name={`values-color-${idx}`}
             onChange={handleChangeColor}
           />
@@ -118,7 +118,7 @@ const ColorOption = ({ idx }: ColorOptionProps) => {
               type="number"
               min={0}
               max={100}
-              value={appearance.values[idx].percentage}
+              value={background.values[idx].percentage}
               onChange={handleChangePercentage}
               name={`values-percentage-${idx}`}
               className="rounded-lg bg-gray-200 p-1 px-2 py-1"
