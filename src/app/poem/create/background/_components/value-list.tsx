@@ -1,30 +1,58 @@
 "use client";
 
-import { ChangeEvent, useCallback, useContext } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { AppearanceContext } from "../_providers/appearance-provider";
 import ColorPicker from "./color-picker";
-import { Background } from "@/types";
+import { Background, BackgroundColorValue } from "@/types";
 import { randomColor } from "@/util/color";
 
 const ValueList = () => {
-  const { background } = useContext(AppearanceContext);
+  const { background, setBackground } = useContext(AppearanceContext);
   if (background.type === "color") return null;
+
+  const [autoPercentage, setAutoPercentage] = useState(true);
+  useEffect(() => {
+    setBackground(prev => {
+      if (prev.type === "color") return {} as Background;
+
+      const values = [...prev.values ];
+      if (autoPercentage) {
+        calculatePercentage(values);
+      }
+
+      return { ...prev, values };
+    });
+  }, [autoPercentage]);
 
   return (
     <div className="flex flex-col">
       <p>Values</p>
-      <div className="flex flex-col">
+      <div className="flex items-center gap-2 text-sm">
+        <input
+          type="checkbox"
+          checked={autoPercentage}
+          onChange={() => setAutoPercentage(prev => !prev)}
+        />
+        <label>Auto Percentage</label>
+      </div>
+      <div className="mt-2 flex flex-col">
         {background.values.map((_, idx) => (
-          <ColorOption idx={idx} key={idx} />
+          <ColorOption idx={idx} key={idx} disabled={autoPercentage} />
         ))}
-        <AddButton />
+        <AddButton autoPercentage={autoPercentage} />
       </div>
     </div>
   );
 };
 export default ValueList;
 
-const AddButton = () => {
+const AddButton = ({ autoPercentage }: { autoPercentage: boolean }) => {
   const { setBackground } = useContext(AppearanceContext);
 
   const handleAddItem = useCallback(() => {
@@ -33,10 +61,13 @@ const AddButton = () => {
 
       const newItem = { value: randomColor(), percentage: 0 };
       const values = [...prev.values, newItem];
+      if (autoPercentage) {
+        calculatePercentage(values);
+      }
 
       return { ...prev, values };
     });
-  }, [setBackground]);
+  }, [setBackground, autoPercentage]);
 
   return (
     <button
@@ -75,8 +106,8 @@ const RemoveButton = ({ idx }: RemoveButtonProps) => {
   );
 };
 
-type ColorOptionProps = { idx: number };
-const ColorOption = ({ idx }: ColorOptionProps) => {
+type ColorOptionProps = { idx: number; disabled?: boolean };
+const ColorOption = ({ idx, disabled }: ColorOptionProps) => {
   const { background, setBackground } = useContext(AppearanceContext);
 
   const handleChangeColor = useCallback(
@@ -112,6 +143,7 @@ const ColorOption = ({ idx }: ColorOptionProps) => {
           <ColorPicker
             value={background.values[idx].value}
             name={`values-color-${idx}`}
+            disabled={disabled}
             onChange={handleChangeColor}
           />
           <div>
@@ -122,7 +154,8 @@ const ColorOption = ({ idx }: ColorOptionProps) => {
               value={background.values[idx].percentage}
               onChange={handleChangePercentage}
               name={`values-percentage-${idx}`}
-              className="rounded-lg bg-gray-200 p-1 px-2 py-1"
+              disabled={disabled}
+              className={`rounded-lg bg-gray-200 p-1 px-2 py-1 ${disabled ? "cursor-not-allowed text-gray-500" : "text-black"}`}
             />
             <span className="ml-1 mr-4">%</span>
             <RemoveButton idx={idx} />
@@ -132,3 +165,10 @@ const ColorOption = ({ idx }: ColorOptionProps) => {
     </div>
   );
 };
+
+function calculatePercentage(values: BackgroundColorValue[]) {
+  const factor = 100 / values.length;
+  for (let i = 0; i < values.length; i++) {
+    values[i].percentage = factor * (i + 1);
+  }
+}

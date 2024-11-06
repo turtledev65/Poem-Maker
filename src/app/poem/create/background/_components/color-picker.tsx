@@ -5,10 +5,11 @@ import { ChangeEvent, useId } from "react";
 type Props = {
   value: string;
   name?: string;
+  disabled?: boolean;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const ColorPicker = ({ value, name, onChange }: Props) => {
+const ColorPicker = ({ value, name, disabled, onChange }: Props) => {
   const id = useId();
 
   return (
@@ -19,6 +20,7 @@ const ColorPicker = ({ value, name, onChange }: Props) => {
         hidden
         value={value}
         name={name}
+        disabled={disabled}
         onChange={onChange}
       />
       <label
