@@ -7,7 +7,7 @@ type Props = Readonly<{
 const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en">
-      <body className="p-4 h-screen">{children}</body>
+      <body className="h-screen">{children}</body>
     </html>
   );
 };
