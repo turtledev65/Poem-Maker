@@ -4,9 +4,14 @@ import AppearanceProvider, {
   AppearanceContext,
 } from "./_providers/appearance-provider";
 import Sidebar from "./_components/sidebar";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
+import Cookie from "js-cookie";
+import { safeParseJson } from "@/util/json";
+import { Poem as PoemType } from "@/types";
+import { useRouter } from "next/navigation";
+import isClient from "@/util/is-client";
 
 const AppearancePage = () => {
   return (
@@ -29,13 +34,29 @@ const Background = () => {
 };
 
 const Poem = () => {
+  const router = useRouter();
   const { appearance } = useContext(AppearanceContext);
+
+  const poem = useMemo(() => getPoem(), []);
+  if (!poem) {
+    router.push("/poem/create/edit");
+    return;
+  }
 
   return (
     <BasePoem
-      title="Title"
-      text="here is some text"
+      title={poem.title}
+      text={poem.text}
       appearance={appearance.foreground}
     />
   );
 };
+
+function getPoem() {
+  "use client";
+  if (!isClient()) return;
+
+  const newPoem = Cookie.get("new-poem");
+  if (!newPoem) return null;
+  return safeParseJson<PoemType>(newPoem);
+}
