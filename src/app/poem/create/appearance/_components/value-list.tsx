@@ -21,7 +21,7 @@ const ValueList = () => {
     setBackground(prev => {
       if (prev.type === "color") return {} as Background;
 
-      const values = [...prev.values ];
+      const values = [...prev.values];
       if (autoPercentage) {
         calculatePercentage(values);
       }
@@ -43,7 +43,7 @@ const ValueList = () => {
       </div>
       <div className="mt-2 flex flex-col">
         {background.values.map((_, idx) => (
-          <ColorOption idx={idx} key={idx} disabled={autoPercentage} />
+          <ColorOption idx={idx} key={idx} autoPercentage={autoPercentage} />
         ))}
         <AddButton autoPercentage={autoPercentage} />
       </div>
@@ -82,8 +82,9 @@ const AddButton = ({ autoPercentage }: { autoPercentage: boolean }) => {
 
 type RemoveButtonProps = {
   idx: number;
+  autoPercentage: boolean;
 };
-const RemoveButton = ({ idx }: RemoveButtonProps) => {
+const RemoveButton = ({ idx, autoPercentage }: RemoveButtonProps) => {
   const { setBackground } = useContext(AppearanceContext);
 
   const handleRemoveItem = useCallback(() => {
@@ -91,9 +92,14 @@ const RemoveButton = ({ idx }: RemoveButtonProps) => {
       if (prev.type === "color") return {} as Background;
       const values = [...prev.values];
       values.splice(idx, 1);
+
+      if (autoPercentage) {
+        calculatePercentage(values);
+      }
+
       return { ...prev, values };
     });
-  }, [setBackground, idx]);
+  }, [setBackground, idx, autoPercentage]);
 
   return (
     <button
@@ -106,8 +112,8 @@ const RemoveButton = ({ idx }: RemoveButtonProps) => {
   );
 };
 
-type ColorOptionProps = { idx: number; disabled?: boolean };
-const ColorOption = ({ idx, disabled }: ColorOptionProps) => {
+type ColorOptionProps = { idx: number; autoPercentage: boolean };
+const ColorOption = ({ idx, autoPercentage }: ColorOptionProps) => {
   const { background, setBackground } = useContext(AppearanceContext);
 
   const handleChangeColor = useCallback(
@@ -153,11 +159,11 @@ const ColorOption = ({ idx, disabled }: ColorOptionProps) => {
               value={background.values[idx].percentage}
               onChange={handleChangePercentage}
               name={`values-percentage-${idx}`}
-              disabled={disabled}
-              className={`rounded-lg bg-gray-200 p-1 px-2 py-1 ${disabled ? "cursor-not-allowed text-gray-500" : "text-black"}`}
+              disabled={autoPercentage}
+              className={`rounded-lg bg-gray-200 p-1 px-2 py-1 ${autoPercentage ? "cursor-not-allowed text-gray-500" : "text-black"}`}
             />
             <span className="ml-1 mr-4">%</span>
-            <RemoveButton idx={idx} />
+            <RemoveButton idx={idx} autoPercentage={autoPercentage} />
           </div>
         </>
       )}
