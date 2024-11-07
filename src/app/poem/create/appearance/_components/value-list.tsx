@@ -143,7 +143,6 @@ const ColorOption = ({ idx, disabled }: ColorOptionProps) => {
           <ColorPicker
             value={background.values[idx].value}
             name={`values-color-${idx}`}
-            disabled={disabled}
             onChange={handleChangeColor}
           />
           <div>
