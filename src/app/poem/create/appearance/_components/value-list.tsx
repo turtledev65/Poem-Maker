@@ -31,7 +31,7 @@ const ValueList = () => {
   }, [autoPercentage]);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col my-2">
       <p>Values</p>
       <div className="flex items-center gap-2 text-sm">
         <input

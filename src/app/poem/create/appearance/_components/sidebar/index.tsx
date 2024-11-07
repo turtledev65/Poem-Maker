@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <form
       action={editPoemAppearance}
-      className="absolute bottom-0 right-0 top-0 flex w-80 flex-col justify-between rounded-l-xl border-l-2 bg-white p-2"
+      className="absolute bottom-0 right-0 top-0 flex w-80 flex-col overflow-auto justify-between rounded-l-xl border-l-2 bg-white p-2"
     >
       <ForegroundSettings />
       <BackgroundSettings />
