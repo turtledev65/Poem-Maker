@@ -24,7 +24,7 @@ export async function editPoemData(formData: FormData) {
     const cookieStore = await cookies();
     cookieStore.set("new-poem", JSON.stringify(newPoem));
 
-    redirect("/poem/create/background");
+    redirect("/poem/create/appearance");
   }
 }
 

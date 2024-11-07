@@ -8,12 +8,12 @@ import { useContext } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
 
-const BackgroundPage = () => {
+const AppearancePage = () => {
   return (
     <main>
       <AppearanceProvider>
         <Background />
-        <div className="flex">
+        <div className="flex p-2">
           <Poem />
         </div>
         <Sidebar />
@@ -21,7 +21,7 @@ const BackgroundPage = () => {
     </main>
   );
 };
-export default BackgroundPage;
+export default AppearancePage;
 
 const Background = () => {
   const { appearance } = useContext(AppearanceContext);
