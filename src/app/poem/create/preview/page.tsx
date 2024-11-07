@@ -9,7 +9,7 @@ const PreviewPage = async () => {
   if (!poem) return;
 
   return (
-    <main className="flex h-full flex-row gap-4">
+    <main className="flex h-full flex-row gap-4 p-2">
       <Background appearance={poem.appearance.background} />
       <Poem
         title={poem.title}
