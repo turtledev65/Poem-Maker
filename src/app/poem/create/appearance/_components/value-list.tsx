@@ -33,15 +33,16 @@ const ValueList = () => {
   return (
     <div className="my-2 flex flex-col">
       <p>Values</p>
-      <div className="flex items-center gap-2 text-sm">
-        <input
-          type="checkbox"
-          checked={autoPercentage}
-          onChange={() => setAutoPercentage(prev => !prev)}
-        />
-        <label>Auto Percentage</label>
-      </div>
+      <div className="flex items-center gap-2 text-sm"></div>
       <div className="mt-2 flex flex-col">
+        <label className="flex select-none items-center justify-between gap-2 text-sm">
+          Auto Percentage
+          <input
+            type="checkbox"
+            checked={autoPercentage}
+            onChange={() => setAutoPercentage(prev => !prev)}
+          />
+        </label>
         {background.values.map((_, idx) => (
           <ColorOption idx={idx} key={idx} autoPercentage={autoPercentage} />
         ))}
