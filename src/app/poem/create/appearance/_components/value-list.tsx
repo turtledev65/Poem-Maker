@@ -31,7 +31,7 @@ const ValueList = () => {
   }, [autoPercentage]);
 
   return (
-    <div className="flex flex-col my-2">
+    <div className="my-2 flex flex-col">
       <p>Values</p>
       <div className="flex items-center gap-2 text-sm">
         <input
@@ -157,9 +157,10 @@ const ColorOption = ({ idx, autoPercentage }: ColorOptionProps) => {
               min={0}
               max={100}
               value={background.values[idx].percentage}
-              onChange={handleChangePercentage}
               name={`values-percentage-${idx}`}
               disabled={autoPercentage}
+              onChange={handleChangePercentage}
+              onKeyDown={e => e.key === "Enter" && e.preventDefault()}
               className={`rounded-lg bg-gray-200 p-1 px-2 py-1 ${autoPercentage ? "cursor-not-allowed text-gray-500" : "text-black"}`}
             />
             <span className="ml-1 mr-4">%</span>

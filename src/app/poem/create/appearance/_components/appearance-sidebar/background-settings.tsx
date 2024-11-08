@@ -113,6 +113,7 @@ const LinearGradientSettings = () => {
               angle: Number(e.target.value),
             }))
           }
+          onKeyDown={e => e.key === "Enter" && e.preventDefault()}
           name="angle"
           className="rounded-lg bg-gray-200 px-2 py-1"
         />
