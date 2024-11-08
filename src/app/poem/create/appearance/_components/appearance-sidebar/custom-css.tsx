@@ -27,18 +27,20 @@ const CustomCssSettings = () => {
         ref={textAreaRef}
         className={`relative mt-4 w-full resize-none rounded border-2 border-solid px-2 py-1 outline-none ${enabled ? "border-gray-400 text-black" : "border-gray-200 text-gray-400"}`}
       />
-      <div className="flex justify-end">
-        <button
-          type="button"
-          onClick={() => {
-            const text = textAreaRef.current?.value ?? "";
-            addCustomCss(text);
-          }}
-          className="rounded-lg border-2 border-solid border-green-500 px-2 py-1 text-xl text-green-500 transition-all hover:bg-green-500 hover:text-white"
-        >
-          Done
-        </button>
-      </div>
+      {enabled && (
+        <div className="flex justify-end">
+          <button
+            type="button"
+            onClick={() => {
+              const text = textAreaRef.current?.value ?? "";
+              addCustomCss(text);
+            }}
+            className="rounded-lg border-2 border-solid border-green-500 px-2 py-1 text-xl text-green-500 transition-all hover:bg-green-500 hover:text-white"
+          >
+            Done
+          </button>
+        </div>
+      )}
     </SidebarSection>
   );
 };
