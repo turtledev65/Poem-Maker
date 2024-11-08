@@ -9,10 +9,22 @@ const Background = ({ appearance }: { appearance: BackgroundType }) => {
       case "color":
         return { background: appearance.value };
       case "linear-gradient":
+        if (appearance.values.length === 0) {
+          return { background: "#ffffff" };
+        } else if (appearance.values.length == 1) {
+          return { background: appearance.values[0].value };
+        }
+
         return {
           background: `linear-gradient(${appearance.angle}deg, ${getColors(appearance)})`,
         };
       case "radial-gradient":
+        if (appearance.values.length === 0) {
+          return { background: "#ffffff" };
+        } else if (appearance.values.length == 1) {
+          return { background: appearance.values[0].value };
+        }
+
         return {
           background: `radial-gradient(circle, ${getColors(appearance)})`,
         };
