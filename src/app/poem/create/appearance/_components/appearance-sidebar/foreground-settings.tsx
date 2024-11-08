@@ -32,7 +32,7 @@ const ColorField = ({ name, value }: ColorFieldProps) => {
   }, []);
 
   return (
-    <div className="flex flex-row items-center justify-between gap-6">
+    <label className="flex flex-row items-center justify-between gap-6">
       <p>{paragraphText}</p>
       <ColorPicker
         name={name}
@@ -41,6 +41,6 @@ const ColorField = ({ name, value }: ColorFieldProps) => {
           setForeground(prev => ({ ...prev, [value]: e.target.value }))
         }
       />
-    </div>
+    </label>
   );
 };
