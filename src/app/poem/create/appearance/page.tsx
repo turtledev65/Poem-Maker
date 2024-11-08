@@ -7,10 +7,7 @@ import AppearanceSidebar from "./_components/appearance-sidebar";
 import { useContext, useMemo } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
-import { safeParseJson } from "@/util/json";
-import { Poem as PoemType } from "@/types";
 import { useRouter } from "next/navigation";
-import { text } from "stream/consumers";
 
 const AppearancePage = () => {
   return (
