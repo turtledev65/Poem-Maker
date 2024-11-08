@@ -14,12 +14,14 @@ const CustomCssSettings = () => {
           type="checkbox"
           checked={enabled}
           onChange={() => setEnabled(prev => !prev)}
+          name="custom-css-enabled"
           className="scale-125 outline-none"
         />
       </label>
       <textarea
         rows={10}
         disabled={!enabled}
+        name="custom-css"
         className={`mt-4 w-full resize-none rounded border-2 border-solid px-2 py-1 outline-none ${enabled ? "border-gray-400 text-black" : "border-gray-200 text-gray-400"}`}
       />
     </SidebarSection>

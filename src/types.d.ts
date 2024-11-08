@@ -20,9 +20,15 @@ export type Foreground = {
   poem: string;
 };
 
+export type CustomCSS = {
+  enabled: boolean;
+  css: string;
+};
+
 export type Appearance = {
   foreground: Foreground;
   background: Background;
+  customCSS: CustomCSS;
 };
 
 export type Poem = {

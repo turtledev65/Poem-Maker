@@ -86,6 +86,14 @@ export async function editPoemAppearance(formData: FormData) {
   }
   appearance.background = background;
 
+  const customCSSEnabled = formData.get("custom-css-enabled") === "on";
+  if (customCSSEnabled) {
+    const css = formData.get("custom-css")?.toString().trim();
+    if (css) {
+      appearance.customCSS = { enabled: customCSSEnabled, css };
+    }
+  }
+
   newPoem.appearance = appearance;
   cookieStore.set("new-poem", JSON.stringify(newPoem));
 
