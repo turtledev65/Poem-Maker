@@ -2,10 +2,9 @@
 
 import { useContext } from "react";
 import { AppearanceContext } from "../../_providers/appearance-provider";
-import ColorSettings from "./color-settings";
-import LinearGradientSettings from "./linear-gradient-settings";
-import RadialGradientSettings from "./radial-gradient-settings";
 import { Background, BackgroundType } from "@/types";
+import ValueList from "../value-list";
+import ColorPicker from "../color-picker";
 
 const BackgroundSettings = () => {
   return (
@@ -76,3 +75,53 @@ function getDefaultSettings(type: BackgroundType) {
       return {} as Background;
   }
 }
+
+const ColorSettings = () => {
+  const { background, setBackground } = useContext(AppearanceContext);
+  if (background.type !== "color") return null;
+
+  return (
+    <div className="flex flex-row items-center justify-between">
+      <p>Value</p>
+      <ColorPicker
+        value={background.value}
+        name="value"
+        onChange={e =>
+          setBackground(prev => ({ ...prev, value: e.target.value }))
+        }
+      />
+    </div>
+  );
+};
+
+const LinearGradientSettings = () => {
+  const { background, setBackground } = useContext(AppearanceContext);
+  if (background.type !== "linear-gradient") return null;
+
+  return (
+    <>
+      <div className="flex flex-row items-center justify-between">
+        <p>Angle</p>
+        <input
+          type="number"
+          min={0}
+          max={360}
+          value={background.angle}
+          onChange={e =>
+            setBackground(prev => ({
+              ...prev,
+              angle: Number(e.target.value),
+            }))
+          }
+          name="angle"
+          className="rounded-lg bg-gray-200 px-2 py-1"
+        />
+      </div>
+      <ValueList />
+    </>
+  );
+};
+
+const RadialGradientSettings = () => {
+  return <ValueList />;
+};
