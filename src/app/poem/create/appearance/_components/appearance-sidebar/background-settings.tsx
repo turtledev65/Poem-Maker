@@ -5,16 +5,16 @@ import { AppearanceContext } from "../../_providers/appearance-provider";
 import { Background, BackgroundType } from "@/types";
 import ValueList from "../value-list";
 import ColorPicker from "../color-picker";
+import { SidebarSection } from "@/app/_components/sidebar";
 
 const BackgroundSettings = () => {
   return (
-    <div>
-      <h1 className="mb-4 text-3xl font-bold">Background</h1>
+    <SidebarSection title="Background">
       <div className="flex flex-col gap-3">
         <TypeSetting />
         <SettingsFields />
       </div>
-    </div>
+    </SidebarSection>
   );
 };
 export default BackgroundSettings;

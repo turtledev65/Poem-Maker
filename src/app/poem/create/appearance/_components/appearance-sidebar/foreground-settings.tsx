@@ -4,16 +4,16 @@ import { Foreground } from "@/types";
 import { useContext, useMemo } from "react";
 import { AppearanceContext } from "../../_providers/appearance-provider";
 import ColorPicker from "../color-picker";
+import { SidebarSection } from "@/app/_components/sidebar";
 
 const ForegroundSettings = () => {
   return (
-    <div>
-      <h1 className="mb-4 text-3xl font-bold">Foreground</h1>
+    <SidebarSection title="Foreground">
       <div className="flex flex-col gap-3">
         <ColorField name="title-color" value="title" />
         <ColorField name="poem-color" value="poem" />
       </div>
-    </div>
+    </SidebarSection>
   );
 };
 export default ForegroundSettings;

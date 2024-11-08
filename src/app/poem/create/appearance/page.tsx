@@ -7,11 +7,10 @@ import AppearanceSidebar from "./_components/appearance-sidebar";
 import { useContext, useMemo } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
-import Cookie from "js-cookie";
 import { safeParseJson } from "@/util/json";
 import { Poem as PoemType } from "@/types";
 import { useRouter } from "next/navigation";
-import isClient from "@/util/is-client";
+import { text } from "stream/consumers";
 
 const AppearancePage = () => {
   return (
@@ -37,7 +36,10 @@ const Poem = () => {
   const router = useRouter();
   const { appearance } = useContext(AppearanceContext);
 
-  const poem = useMemo(() => getPoem(), []);
+  const poem = useMemo(
+    () => ({ title: "Test Title", text: "Teasd;lfkjsdk" }),
+    [],
+  );
   if (!poem) {
     router.push("/poem/create/edit");
     return;
@@ -51,12 +53,3 @@ const Poem = () => {
     />
   );
 };
-
-function getPoem() {
-  "use client";
-  if (!isClient()) return;
-
-  const newPoem = Cookie.get("new-poem");
-  if (!newPoem) return null;
-  return safeParseJson<PoemType>(newPoem);
-}
