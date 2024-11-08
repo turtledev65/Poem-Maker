@@ -25,7 +25,7 @@ const CustomCssSettings = () => {
         disabled={!enabled}
         name="custom-css"
         ref={textAreaRef}
-        className={`relative mt-4 w-full resize-none rounded border-2 border-solid px-2 py-1 outline-none ${enabled ? "border-gray-400 text-black" : "border-gray-200 text-gray-400"}`}
+        className={`relative mt-4 w-full resize-none rounded border-2 border-solid px-2 py-1 outline-none ${enabled ? "border-gray-400 text-black" : "cursor-not-allowed border-gray-200 text-gray-400"}`}
       />
       {enabled && (
         <div className="flex justify-end">
