@@ -5,6 +5,7 @@ import { editPoemAppearance } from "../../../actions";
 import BackgroundSettings from "./background-settings";
 import ForegroundSettings from "./foreground-settings";
 import Sidebar from "@/app/_components/sidebar";
+import CustomCssSettings from "./custom-css";
 
 const AppearanceSidebar = () => {
   return (
@@ -12,6 +13,7 @@ const AppearanceSidebar = () => {
       <form action={editPoemAppearance} className="relative">
         <ForegroundSettings />
         <BackgroundSettings />
+        <CustomCssSettings />
 
         <div className="flex w-full gap-2">
           <Link
