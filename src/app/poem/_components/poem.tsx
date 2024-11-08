@@ -7,9 +7,9 @@ function replaceWithBr(str: string) {
 type Props = { title: string; text: string; appearance: Foreground };
 const Poem = ({ title, text, appearance }: Props) => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="poem-container flex flex-col gap-2">
       <h1
-        className="mb-2 text-3xl font-bold"
+        className="poem-title mb-2 text-3xl font-bold"
         style={{ color: appearance.title }}
       >
         {title}
@@ -19,6 +19,7 @@ const Poem = ({ title, text, appearance }: Props) => {
           __html: replaceWithBr(text),
         }}
         style={{ color: appearance.poem }}
+        className="poem-content"
       />
     </div>
   );
