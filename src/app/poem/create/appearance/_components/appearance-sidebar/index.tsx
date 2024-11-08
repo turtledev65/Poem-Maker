@@ -5,7 +5,7 @@ import { editPoemAppearance } from "../../../actions";
 import BackgroundSettings from "./background-settings";
 import ForegroundSettings from "./foreground-settings";
 
-const Sidebar = () => {
+const AppearanceSidebar = () => {
   return (
     <form
       action={editPoemAppearance}
@@ -31,4 +31,4 @@ const Sidebar = () => {
     </form>
   );
 };
-export default Sidebar;
+export default AppearanceSidebar;

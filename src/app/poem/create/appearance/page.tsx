@@ -3,7 +3,7 @@
 import AppearanceProvider, {
   AppearanceContext,
 } from "./_providers/appearance-provider";
-import Sidebar from "./_components/sidebar";
+import AppearanceSidebar from "./_components/appearance-sidebar";
 import { useContext, useMemo } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
@@ -21,7 +21,7 @@ const AppearancePage = () => {
         <div className="flex p-2">
           <Poem />
         </div>
-        <Sidebar />
+        <AppearanceSidebar />
       </AppearanceProvider>
     </main>
   );
