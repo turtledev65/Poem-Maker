@@ -21,7 +21,9 @@ const Background = ({ appearance }: { appearance: BackgroundType }) => {
     }
   }, [appearance]);
 
-  return <div className="absolute inset-0 -z-10" style={styles} />;
+  return (
+    <div className="poem-background absolute inset-0 -z-10" style={styles} />
+  );
 };
 export default Background;
 
