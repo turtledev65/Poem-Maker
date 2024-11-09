@@ -1,12 +1,21 @@
 "use client";
 
 import { SidebarSection } from "@/app/_components/sidebar";
-import addCustomCss from "@/util/custom-css";
-import { useRef, useState } from "react";
+import { addCustomCss, removeCustomCss } from "@/util/custom-css";
+import { useEffect, useRef, useState } from "react";
 
 const CustomCssSettings = () => {
   const [enabled, setEnabled] = useState(false);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (enabled) {
+      const text = textAreaRef.current?.value ?? "";
+      addCustomCss(text);
+    } else {
+      removeCustomCss();
+    }
+  }, [enabled]);
 
   return (
     <SidebarSection title="Custom Css">

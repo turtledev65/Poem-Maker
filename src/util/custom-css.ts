@@ -1,4 +1,4 @@
-export default function addCustomCss(css: string) {
+export function addCustomCss(css: string) {
   if (!document) return;
 
   const [html] = document.getElementsByTagName("html");
@@ -10,4 +10,16 @@ export default function addCustomCss(css: string) {
   }
   styleElement.innerHTML = css;
   html.appendChild(styleElement);
+}
+
+export function removeCustomCss() {
+  if (!document) return;
+
+  const [html] = document.getElementsByTagName("html");
+  if (!html) return;
+
+  const [styleElement] = document.getElementsByTagName("style");
+  if (styleElement) {
+    styleElement.remove();
+  }
 }
