@@ -1,12 +1,11 @@
-import { Poem as PoemType } from "@/types";
-import { safeParseJson } from "@/util/json";
-import { cookies } from "next/headers";
 import Poem from "../../_components/poem";
 import Background from "../../_components/background";
 import { savePoem } from "../actions";
+import server_getNewPoem from "../_util/server-get-new-poem";
+import Link from "next/link";
 
 const PreviewPage = async () => {
-  const poem = await getPoem();
+  const poem = await server_getNewPoem();
   if (!poem) return;
 
   return (
@@ -15,12 +14,18 @@ const PreviewPage = async () => {
       <Poem
         title={poem.title}
         text={poem.text}
-        appearance={poem.appearance.foreground}
+        foregroundAppearance={poem.appearance.foreground}
       />
-      <form action={savePoem}>
+      <form action={savePoem} className="absolute bottom-2 right-2 flex gap-2">
+        <Link
+          href="/poem/create/appearance"
+          className="rounded-lg bg-red-500 px-6 py-2 text-2xl text-white transition-all hover:opacity-80"
+        >
+          Back
+        </Link>
         <button
           type="submit"
-          className="absolute bottom-2 right-2 rounded-lg border-2 border-solid border-blue-500 px-4 py-1 text-2xl text-blue-500 transition-all hover:bg-blue-500 hover:text-white"
+          className="rounded-lg bg-blue-500 px-6 py-2 text-2xl text-white transition-all hover:opacity-80"
         >
           Done
         </button>
@@ -29,11 +34,3 @@ const PreviewPage = async () => {
   );
 };
 export default PreviewPage;
-
-async function getPoem() {
-  const cookieStore = await cookies();
-  const poem = cookieStore.get("new-poem")?.value;
-  if (!poem) return null;
-
-  return safeParseJson<PoemType>(poem);
-}
