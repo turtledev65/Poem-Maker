@@ -1,12 +1,19 @@
+import server_getNewPoem from "../_util/server-get-new-poem";
 import { editPoemData } from "../actions";
 
-const EditPoem = () => {
+const EditPoem = async () => {
+  const newPoem = await server_getNewPoem();
+
   return (
     <main className="h-full p-2">
-      <form action={editPoemData} className="flex h-full flex-row gap-4 *:flex-1">
+      <form
+        action={editPoemData}
+        className="flex h-full flex-row gap-4 *:flex-1"
+      >
         <div className="flex h-full flex-col gap-2">
           <input
             placeholder="Title"
+            defaultValue={newPoem?.title}
             maxLength={60}
             name="title"
             required
@@ -14,6 +21,7 @@ const EditPoem = () => {
           />
           <textarea
             placeholder="Write your poem here"
+            defaultValue={newPoem?.text}
             name="text"
             required
             className="h-full resize-none rounded-lg border-2 border-solid border-slate-700 p-1 text-lg outline-none"

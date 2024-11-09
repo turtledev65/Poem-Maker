@@ -4,22 +4,28 @@ import AppearanceProvider, {
   AppearanceContext,
 } from "./_providers/appearance-provider";
 import AppearanceSidebar from "./_components/appearance-sidebar";
-import { useContext, useMemo } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
 import { useRouter } from "next/navigation";
+import { Poem as PoemType } from "@/types";
+import client_getNewPoem from "../_util/client-get-new-poem";
 
 const AppearancePage = () => {
+  const newPoem = useNewPoem();
+
   return (
-    <main>
-      <AppearanceProvider>
-        <Background />
-        <div className="flex p-2">
-          <Poem />
-        </div>
-        <AppearanceSidebar />
-      </AppearanceProvider>
-    </main>
+    <Suspense>
+      <main>
+        <AppearanceProvider defaultValue={newPoem?.appearance}>
+          <Background />
+          <div className="flex p-2">
+            <Poem />
+          </div>
+          <AppearanceSidebar />
+        </AppearanceProvider>
+      </main>
+    </Suspense>
   );
 };
 export default AppearancePage;
@@ -30,23 +36,27 @@ const Background = () => {
 };
 
 const Poem = () => {
-  const router = useRouter();
   const { appearance } = useContext(AppearanceContext);
-
-  const poem = useMemo(
-    () => ({ title: "Test Title", text: "Teasd;lfkjsdk" }),
-    [],
-  );
-  if (!poem) {
-    router.push("/poem/create/edit");
-    return;
-  }
+  const newPoem = useNewPoem();
 
   return (
     <BasePoem
-      title={poem.title}
-      text={poem.text}
-      appearance={appearance.foreground}
+      title={newPoem?.title ?? "Loading title..."}
+      text={newPoem?.text ?? "Loading text..."}
+      foregroundAppearance={appearance.foreground}
     />
   );
+};
+
+const useNewPoem = () => {
+  const [newPoem, setNewPoem] = useState<PoemType | null | undefined>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const poem = client_getNewPoem();
+    if (!poem) router.replace("/poem/create/edit");
+    setNewPoem(poem);
+  }, [setNewPoem]);
+
+  return newPoem;
 };

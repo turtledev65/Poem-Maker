@@ -5,7 +5,7 @@ function replaceWithBr(str: string) {
 }
 
 type Props = { title: string; text: string; foregroundAppearance: Foreground };
-const Poem = ({ title, text, foregroundAppearance  }: Props) => {
+const Poem = ({ title, text, foregroundAppearance }: Props) => {
   return (
     <div className="poem-container flex flex-col gap-2">
       <h1
