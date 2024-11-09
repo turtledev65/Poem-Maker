@@ -1,6 +1,8 @@
-import { pgTable, varchar } from "drizzle-orm/pg-core";
+import { Appearance } from "@/types";
+import { jsonb, pgTable, text } from "drizzle-orm/pg-core";
 
-export const Article = pgTable("poem", {
-  title: varchar("title").notNull(),
-  text: varchar("text").notNull(),
+export const poemTable = pgTable("poem", {
+  title: text("title").notNull(),
+  text: text("text").notNull(),
+  appearance: jsonb().$type<Appearance>().notNull(),
 });
