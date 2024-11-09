@@ -1,5 +1,7 @@
 "use server";
 
+import { db } from "@/db";
+import { poemTable } from "@/db/schema";
 import {
   Appearance,
   Background,
@@ -8,6 +10,7 @@ import {
   Poem,
 } from "@/types";
 import { safeParseJson } from "@/util/json";
+import { warn } from "console";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -92,10 +95,28 @@ export async function editPoemAppearance(formData: FormData) {
     if (css) {
       appearance.customCSS = { enabled: customCSSEnabled, css };
     }
+  } else {
+    appearance.customCSS = { enabled: false, css: "" };
   }
 
   newPoem.appearance = appearance;
   cookieStore.set("new-poem", JSON.stringify(newPoem));
 
   redirect("/poem/create/preview");
+}
+
+export async function savePoem() {
+  const cookieStore = await cookies();
+  const newPoemStr = cookieStore.get("new-poem")?.value;
+  if (!newPoemStr) return;
+
+  const newPoem = safeParseJson<Poem>(newPoemStr);
+  if (!newPoem) return;
+
+  const [poem] = await db
+    .insert(poemTable)
+    .values({ ...newPoem })
+    .returning();
+
+  redirect(`/poem/${poem.id}`);
 }
