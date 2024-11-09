@@ -155,6 +155,7 @@ const ColorOption = ({ idx, autoPercentage }: ColorOptionProps) => {
           <div>
             <input
               type="number"
+              step={0.01}
               min={0}
               max={100}
               value={background.values[idx].percentage}
@@ -177,5 +178,6 @@ function calculatePercentage(values: BackgroundColorValue[]) {
   const factor = 100 / values.length;
   for (let i = 0; i < values.length; i++) {
     values[i].percentage = factor * (i + 1);
+    values[i].percentage = Number(values[i].percentage.toFixed(2));
   }
 }
