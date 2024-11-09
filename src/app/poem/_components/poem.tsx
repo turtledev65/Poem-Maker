@@ -4,13 +4,13 @@ function replaceWithBr(str: string) {
   return str.replace(/\n/g, "<br />");
 }
 
-type Props = { title: string; text: string; appearance: Foreground };
-const Poem = ({ title, text, appearance }: Props) => {
+type Props = { title: string; text: string; foregroundAppearance: Foreground };
+const Poem = ({ title, text, foregroundAppearance  }: Props) => {
   return (
     <div className="poem-container flex flex-col gap-2">
       <h1
         className="poem-title mb-2 text-3xl font-bold"
-        style={{ color: appearance.title }}
+        style={{ color: foregroundAppearance.title }}
       >
         {title}
       </h1>
@@ -18,7 +18,7 @@ const Poem = ({ title, text, appearance }: Props) => {
         dangerouslySetInnerHTML={{
           __html: replaceWithBr(text),
         }}
-        style={{ color: appearance.poem }}
+        style={{ color: foregroundAppearance.poem }}
         className="poem-content"
       />
     </div>
