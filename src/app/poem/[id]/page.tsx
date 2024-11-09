@@ -3,6 +3,7 @@ import Poem from "../_components/poem";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { poemTable } from "@/db/schema";
+import Background from "../_components/background";
 
 type Props = {
   params: {
@@ -18,6 +19,7 @@ const PoemView = async ({ params }: Props) => {
 
   return (
     <main className="p-2">
+      <Background appearance={poem.appearance.background} />
       <Poem
         title={poem.title}
         text={poem.text}
