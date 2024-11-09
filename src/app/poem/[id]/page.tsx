@@ -1,13 +1,28 @@
+import { db } from "@/db";
 import Poem from "../_components/poem";
+import { eq } from "drizzle-orm";
+import { notFound } from "next/navigation";
+import { poemTable } from "@/db/schema";
 
-const PoemView = () => {
-  const title = "";
-  const poem = ``;
+type Props = {
+  params: {
+    id: number;
+  };
+};
+const PoemView = async ({ params }: Props) => {
+  const { id } = await params;
+  const poem = await db.query.poemTable.findFirst({
+    where: eq(poemTable.id, id),
+  });
+  if (!poem) notFound();
 
   return (
-    <main>
-      <h1 className="whitespace-pre-line text-3xl font-bold">{title}</h1>
-      <Poem title={title} text={poem} />
+    <main className="p-2">
+      <Poem
+        title={poem.title}
+        text={poem.text}
+        foregroundAppearance={poem.appearance.foreground}
+      />
     </main>
   );
 };
