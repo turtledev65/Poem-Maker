@@ -7,6 +7,7 @@ import {
   PropsWithChildren,
   SetStateAction,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -23,7 +24,8 @@ export const AppearanceContext = createContext<AppearanceContextType>(
   {} as AppearanceContextType,
 );
 
-const AppearanceProvider = ({ children }: PropsWithChildren) => {
+type Props = { defaultValue?: Appearance } & PropsWithChildren;
+const AppearanceProvider = ({ defaultValue, children }: Props) => {
   const [appearance, setAppearance] = useState<Appearance>({
     foreground: {
       poem: "#000000",
@@ -33,7 +35,16 @@ const AppearanceProvider = ({ children }: PropsWithChildren) => {
       type: "color",
       value: "#ffffff",
     },
+    customCSS: {
+      enabled: false,
+      css: "",
+    },
   });
+
+  useEffect(() => {
+    if (!defaultValue) return;
+    setAppearance(defaultValue);
+  }, [defaultValue]);
 
   const background = useMemo(
     () => appearance.background,
