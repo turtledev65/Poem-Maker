@@ -1,0 +1,1 @@
+ALTER TABLE "poem" ADD COLUMN "id" serial PRIMARY KEY NOT NULL;
