@@ -1,13 +1,11 @@
 import { Foreground } from "@/types";
+import { replaceWithBr } from "@/util/text";
 
-function replaceWithBr(str: string) {
-  return str.replace(/\n/g, "<br />");
-}
 
 type Props = { title: string; text: string; foregroundAppearance: Foreground };
 const Poem = ({ title, text, foregroundAppearance }: Props) => {
   return (
-    <div className="poem-container flex flex-col gap-2">
+    <div className="poem-container flex flex-col gap-2 mt-10">
       <h1
         className="poem-title mb-2 text-3xl font-bold"
         style={{ color: foregroundAppearance.title }}
