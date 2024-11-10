@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "./_components/navbar";
 
 type Props = Readonly<{
   children: React.ReactNode;
@@ -7,7 +8,10 @@ type Props = Readonly<{
 const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en">
-      <body className="h-screen">{children}</body>
+      <body className="h-screen">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 };
