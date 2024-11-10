@@ -5,10 +5,10 @@ const EditPoem = async () => {
   const newPoem = await server_getNewPoem();
 
   return (
-    <main className="h-full p-2">
+    <main className="relative flex flex-1 items-stretch p-2">
       <form
         action={editPoemData}
-        className="flex h-full flex-row gap-4 *:flex-1"
+        className="flex w-full flex-row gap-4 *:flex-1"
       >
         <div className="flex h-full flex-col gap-2">
           <input
