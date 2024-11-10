@@ -3,7 +3,7 @@ import ThemeToggle from "./theme-button";
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-20 flex w-full justify-evenly bg-gray-50 p-4 text-lg">
+    <nav className="sticky top-0 z-20 flex w-full justify-evenly border-b-2 border-solid border-b-gray-400 bg-gray-50 p-4 text-lg">
       <Link href="/">Poem Maker</Link>
       <div className="space-x-6">
         <Link
