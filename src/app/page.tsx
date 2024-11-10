@@ -19,12 +19,20 @@ const Home = () => {
                 A simple web-app to make interactive poems
               </p>
             </div>
-            <Link
-              href="/poem/create/edit"
-              className="rounded-lg bg-blue-500 px-2 py-4 text-xl text-white hover:opacity-80"
-            >
-              Get Started
-            </Link>
+            <div className="flex justify-center gap-6 *:flex-1">
+              <Link
+                href="/explore"
+                className="rounded-lg bg-green-500 px-2 py-4 text-xl text-white hover:opacity-90"
+              >
+                Explore
+              </Link>
+              <Link
+                href="/poem/create/edit"
+                className="rounded-lg bg-blue-500 px-2 py-4 text-xl text-white hover:opacity-90"
+              >
+                Get Started
+              </Link>
+            </div>
           </div>
         </div>
       </div>
