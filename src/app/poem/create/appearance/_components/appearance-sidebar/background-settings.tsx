@@ -45,7 +45,7 @@ const TypeSetting = () => {
           )
         }
         name="background-type"
-        className="rounded-lg bg-gray-200 px-1 py-2"
+        className="rounded-lg bg-gray-200 px-1 py-2 dark:bg-neutral-700"
       >
         <option value="color">Color</option>
         <option value="linear-gradient">Linear Gradient</option>
@@ -114,7 +114,7 @@ const LinearGradientSettings = () => {
           }
           onKeyDown={e => e.key === "Enter" && e.preventDefault()}
           name="angle"
-          className="rounded-lg bg-gray-200 px-2 py-1"
+          className="rounded-lg bg-gray-200 px-2 py-1 dark:bg-neutral-700"
         />
       </div>
       <ValueList />

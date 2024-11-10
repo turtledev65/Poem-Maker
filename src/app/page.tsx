@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <main>
       <div className="absolute inset-0 flex h-full items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0">
           <img
             src="/images/landscape.svg"
             className="h-full w-full object-cover"

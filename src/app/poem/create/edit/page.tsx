@@ -17,14 +17,14 @@ const EditPoem = async () => {
             maxLength={60}
             name="title"
             required
-            className="rounded-lg border-2 border-solid border-slate-700 p-2 text-3xl"
+            className="rounded-lg border-2 border-solid border-slate-700 bg-white p-2 text-3xl dark:bg-neutral-900 dark:text-white"
           />
           <textarea
             placeholder="Write your poem here"
             defaultValue={newPoem?.text}
             name="text"
             required
-            className="h-full resize-none rounded-lg border-2 border-solid border-slate-700 p-1 text-lg outline-none"
+            className="h-full resize-none rounded-lg border-2 border-solid border-slate-700 p-1 text-lg outline-none dark:bg-neutral-900 dark:text-white"
           />
         </div>
         <div className="flex flex-col justify-center gap-2">

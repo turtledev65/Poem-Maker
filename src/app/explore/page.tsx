@@ -7,17 +7,17 @@ const ExplorePage = async () => {
 
   return (
     <main className="flex h-full flex-1 flex-col justify-between gap-4 px-6 py-4 md:flex-row">
-      <div className="rounded-lg bg-gray-100 px-4 py-6">
+      <div className="rounded-lg bg-gray-100 px-4 py-6 dark:bg-neutral-900">
         <div className="sticky top-20 flex flex-col items-center">
-          <h1 className="mx-auto mb-6 inline-block w-min text-center text-6xl font-bold">
+          <h1 className="mx-auto mb-6 inline-block w-min text-center text-6xl font-bold dark:text-gray-50">
             Explore
-            <p className="text-left text-lg text-gray-600">
+            <p className="text-left text-lg text-gray-600 dark:text-gray-300">
               Discover and view poems
             </p>
           </h1>
           <input
             placeholder="Search"
-            className="rounded-full border-2 border-gray-600 px-3 py-2 text-lg outline-none"
+            className="rounded-full border-2 border-gray-600 px-3 py-2 text-lg outline-none dark:border-neutral-500 dark:bg-neutral-700"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ const PoemPreview = ({ title, text, id }: PoemPreviewProps) => {
   return (
     <Link
       href={`/poem/${id}`}
-      className="flex w-full flex-col items-center justify-center gap-10 rounded border-2 border-transparent bg-gray-50 p-2 text-center transition-all hover:border-gray-400"
+      className="flex w-full flex-col items-center justify-center gap-10 rounded border-2 border-transparent bg-gray-50 p-2 text-center transition-all hover:border-gray-400 dark:bg-neutral-900 dark:text-gray-50 hover:dark:border-neutral-500"
     >
       <p
         dangerouslySetInnerHTML={{

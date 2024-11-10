@@ -16,7 +16,10 @@ const PreviewPage = async () => {
         text={poem.text}
         foregroundAppearance={poem.appearance.foreground}
       />
-      <form action={savePoem} className="absolute bottom-2 right-2 flex gap-2">
+      <form
+        action={savePoem}
+        className="absolute bottom-2 right-2 z-20 flex gap-2"
+      >
         <Link
           href="/poem/create/appearance"
           className="rounded-lg bg-red-500 px-6 py-2 text-2xl text-white transition-all hover:opacity-80"

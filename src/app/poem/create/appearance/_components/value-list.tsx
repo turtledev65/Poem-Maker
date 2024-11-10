@@ -74,7 +74,7 @@ const AddButton = ({ autoPercentage }: { autoPercentage: boolean }) => {
     <button
       onClick={handleAddItem}
       type="button"
-      className="mx-auto mt-4 h-10 w-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-400 hover:opacity-80"
+      className="mx-auto mt-4 h-10 w-10 rounded-full bg-gray-200 text-2xl font-bold text-gray-400 hover:opacity-80 dark:bg-neutral-700"
     >
       +
     </button>
@@ -163,7 +163,7 @@ const ColorOption = ({ idx, autoPercentage }: ColorOptionProps) => {
               readOnly={autoPercentage}
               onChange={handleChangePercentage}
               onKeyDown={e => e.key === "Enter" && e.preventDefault()}
-              className={`rounded-lg bg-gray-200 p-1 px-2 py-1 outline-none ${autoPercentage ? "cursor-not-allowed text-gray-500" : "text-black"}`}
+              className={`rounded-lg bg-gray-200 p-1 px-2 py-1 outline-none dark:bg-neutral-700 ${autoPercentage ? "cursor-not-allowed text-gray-500 dark:text-gray-400" : "text-black dark:text-gray-50"}`}
             />
             <span className="ml-1 mr-4">%</span>
             <RemoveButton idx={idx} autoPercentage={autoPercentage} />

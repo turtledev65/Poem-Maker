@@ -18,7 +18,9 @@ const AppearancePage = () => {
     <main className="relative flex-1 px-6 py-4">
       <AppearanceProvider defaultValue={newPoem?.appearance}>
         <Background />
-        <Poem />
+        <div className="z-10">
+          <Poem />
+        </div>
         <AppearanceSidebar />
       </AppearanceProvider>
     </main>
