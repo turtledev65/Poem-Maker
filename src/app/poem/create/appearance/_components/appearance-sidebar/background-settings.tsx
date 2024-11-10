@@ -50,7 +50,6 @@ const TypeSetting = () => {
         <option value="color">Color</option>
         <option value="linear-gradient">Linear Gradient</option>
         <option value="radial-gradient">Radial Gradient</option>
-        <option value="image">Image</option>
       </select>
     </div>
   );
