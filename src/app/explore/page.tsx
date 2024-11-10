@@ -6,9 +6,9 @@ const ExplorePage = async () => {
   const poems = await db.query.poemTable.findMany({ limit: 20 });
 
   return (
-    <main className="flex h-full flex-col justify-between gap-4 overflow-auto px-6 py-4 md:flex-row">
-      <div className="sticky top-2 flex h-full justify-center rounded-lg bg-gray-100 px-4 py-6">
-        <div className="flex flex-col items-center">
+    <main className="flex h-full flex-1 flex-col justify-between gap-4 px-6 py-4 md:flex-row">
+      <div className="rounded-lg bg-gray-100 px-4 py-6">
+        <div className="sticky top-20 flex flex-col items-center">
           <h1 className="mx-auto mb-6 inline-block w-min text-center text-6xl font-bold">
             Explore
             <p className="text-left text-lg text-gray-600">
@@ -23,12 +23,14 @@ const ExplorePage = async () => {
       </div>
       <div className="grid w-full grid-cols-1 gap-4 px-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {poems.map(poem => (
-          <PoemPreview
-            title={poem.title}
-            text={poem.text}
-            id={poem.id}
-            key={poem.id}
-          />
+          <>
+            <PoemPreview
+              title={poem.title}
+              text={poem.text}
+              id={poem.id}
+              key={poem.id}
+            />
+          </>
         ))}
       </div>
     </main>

@@ -8,7 +8,7 @@ type Props = Readonly<{
 const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en">
-      <body className="h-screen">
+      <body className="min-h-screen flex flex-col">
         <Navbar />
         {children}
       </body>

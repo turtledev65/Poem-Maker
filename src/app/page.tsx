@@ -3,7 +3,7 @@ import Link from "next/link";
 const Home = () => {
   return (
     <main>
-      <div className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 flex h-full items-center justify-center overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img
             src="/images/landscape.svg"
