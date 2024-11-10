@@ -6,7 +6,7 @@ const Sidebar = ({ children }: PropsWithChildren) => {
   const [expanded, setExpanded] = useState(true);
 
   return (
-    <div className="fixed bottom-0 right-0 top-0 z-10 flex w-80 items-center justify-end">
+    <div className="absolute bottom-0 right-0 top-0 z-10 flex w-80 items-center justify-end">
       <button
         onClick={() => setExpanded(prev => !prev)}
         className="-left-2 h-min rounded-l-md border-2 border-r-0 border-solid border-gray-700 bg-white p-2 outline-none"

@@ -163,7 +163,7 @@ const ColorOption = ({ idx, autoPercentage }: ColorOptionProps) => {
               readOnly={autoPercentage}
               onChange={handleChangePercentage}
               onKeyDown={e => e.key === "Enter" && e.preventDefault()}
-              className={`rounded-lg outline-none bg-gray-200 p-1 px-2 py-1 ${autoPercentage ? "cursor-not-allowed text-gray-500" : "text-black"}`}
+              className={`rounded-lg bg-gray-200 p-1 px-2 py-1 outline-none ${autoPercentage ? "cursor-not-allowed text-gray-500" : "text-black"}`}
             />
             <span className="ml-1 mr-4">%</span>
             <RemoveButton idx={idx} autoPercentage={autoPercentage} />

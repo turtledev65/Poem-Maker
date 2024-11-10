@@ -4,7 +4,7 @@ import AppearanceProvider, {
   AppearanceContext,
 } from "./_providers/appearance-provider";
 import AppearanceSidebar from "./_components/appearance-sidebar";
-import { Suspense, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BaseBackground from "../../_components/background";
 import BasePoem from "../../_components/poem";
 import { useRouter } from "next/navigation";
@@ -15,17 +15,13 @@ const AppearancePage = () => {
   const newPoem = useNewPoem();
 
   return (
-    <Suspense>
-      <main>
-        <AppearanceProvider defaultValue={newPoem?.appearance}>
-          <Background />
-          <div className="flex p-2">
-            <Poem />
-          </div>
-          <AppearanceSidebar />
-        </AppearanceProvider>
-      </main>
-    </Suspense>
+    <main className="relative flex-1 px-6 py-4">
+      <AppearanceProvider defaultValue={newPoem?.appearance}>
+        <Background />
+        <Poem />
+        <AppearanceSidebar />
+      </AppearanceProvider>
+    </main>
   );
 };
 export default AppearancePage;
