@@ -1,16 +1,19 @@
 "use cient";
 
 import Link from "next/link";
-import { editPoemAppearance } from "../../../actions";
 import BackgroundSettings from "./background-settings";
 import ForegroundSettings from "./foreground-settings";
 import Sidebar from "@/app/_components/sidebar";
 import CustomCssSettings from "./custom-css";
+import { FormEvent } from "react";
 
-const AppearanceSidebar = () => {
+type Props = {
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+};
+const AppearanceSidebar = ({ onSubmit }: Props) => {
   return (
     <Sidebar>
-      <form action={editPoemAppearance} className="relative">
+      <form onSubmit={onSubmit} className="relative">
         <ForegroundSettings />
         <BackgroundSettings />
         <CustomCssSettings />

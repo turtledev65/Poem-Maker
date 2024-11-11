@@ -63,7 +63,7 @@ const AppearanceProvider = ({ defaultValue, children }: Props) => {
         return { ...prev, background };
       });
     },
-    [appearance.background],
+    [setAppearance],
   );
 
   const foreground = useMemo(
@@ -83,7 +83,7 @@ const AppearanceProvider = ({ defaultValue, children }: Props) => {
         return { ...prev, foreground };
       });
     },
-    [appearance.foreground],
+    [setAppearance],
   );
 
   return (

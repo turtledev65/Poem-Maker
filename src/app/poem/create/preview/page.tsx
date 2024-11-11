@@ -16,7 +16,7 @@ const PreviewPage = () => {
     if (isNewPoemInitialized && !newPoem) {
       router.replace("/poem/create/edit");
     }
-  }, [isNewPoemInitialized, newPoem]);
+  }, [isNewPoemInitialized, newPoem, router]);
 
   const handleSavePoem = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
@@ -27,7 +27,7 @@ const PreviewPage = () => {
       const res = await savePoem(newPoem);
       router.replace(`/poem/${res.id}`);
     },
-     [newPoem, router],
+    [newPoem, router],
   );
 
   if (!newPoem) return;

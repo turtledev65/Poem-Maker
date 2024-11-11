@@ -34,14 +34,14 @@ const EditPoem = () => {
         return out;
       });
     },
-    [setNewPoem, router],
+    [setNewPoem],
   );
 
   useEffect(() => {
     if (redirectRef.current) {
       router.push("/poem/create/appearance");
     }
-  }, [redirectRef.current]);
+  }, [redirectRef.current, router]);
 
   return (
     <main className="relative flex flex-1 items-stretch p-2">

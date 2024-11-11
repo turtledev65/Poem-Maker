@@ -14,7 +14,6 @@ import { randomColor } from "@/util/color";
 
 const ValueList = () => {
   const { background, setBackground } = useContext(AppearanceContext);
-  if (background.type === "color") return null;
 
   const [autoPercentage, setAutoPercentage] = useState(true);
   useEffect(() => {
@@ -28,7 +27,9 @@ const ValueList = () => {
 
       return { ...prev, values };
     });
-  }, [autoPercentage]);
+  }, [setBackground, autoPercentage]);
+
+  if (background.type === "color") return null;
 
   return (
     <div className="my-2 flex flex-col">

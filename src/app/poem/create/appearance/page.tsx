@@ -50,7 +50,7 @@ const AppearancePage = () => {
     if (redirectRef.current) {
       router.replace("/poem/create/preview");
     }
-  }, [redirectRef.current]);
+  }, [redirectRef.current, router]);
 
   return (
     <main className="relative flex-1 px-6 py-4">

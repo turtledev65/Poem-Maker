@@ -29,7 +29,7 @@ const ColorField = ({ name, value }: ColorFieldProps) => {
     firstWord = firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
     secondWord = secondWord.charAt(0).toUpperCase() + secondWord.slice(1);
     return `${firstWord} ${secondWord}`;
-  }, []);
+  }, [name]);
 
   return (
     <label className="flex flex-row items-center justify-between gap-6">
