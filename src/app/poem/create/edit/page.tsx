@@ -1,6 +1,5 @@
 "use client";
 import { FormEvent, useCallback, useContext, useEffect, useRef } from "react";
-import { editPoemData } from "../actions";
 import { Poem } from "@/types";
 import { useRouter } from "next/navigation";
 import { NewPoemContext } from "../_providers/new-poem-provider";
@@ -47,7 +46,6 @@ const EditPoem = () => {
   return (
     <main className="relative flex flex-1 items-stretch p-2">
       <form
-        action={editPoemData}
         onSubmit={handleCreatePoem}
         className="flex w-full flex-row gap-4 *:flex-1"
       >

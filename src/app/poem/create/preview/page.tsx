@@ -1,23 +1,46 @@
+"use client";
+
 import Poem from "../../_components/poem";
 import Background from "../../_components/background";
-import { savePoem } from "../actions";
-import server_getNewPoem from "../_util/server-get-new-poem";
 import Link from "next/link";
+import { FormEvent, useCallback, useContext, useEffect } from "react";
+import { NewPoemContext } from "../_providers/new-poem-provider";
+import { useRouter } from "next/navigation";
+import { savePoem } from "../actions";
 
-const PreviewPage = async () => {
-  const poem = await server_getNewPoem();
-  if (!poem) return;
+const PreviewPage = () => {
+  const { isNewPoemInitialized, newPoem } = useContext(NewPoemContext);
 
+  const router = useRouter();
+  useEffect(() => {
+    if (isNewPoemInitialized && !newPoem) {
+      router.replace("/poem/create/edit");
+    }
+  }, [isNewPoemInitialized, newPoem]);
+
+  const handleSavePoem = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+
+      if (!newPoem) return;
+
+      const res = await savePoem(newPoem);
+      router.replace(`/poem/${res.id}`);
+    },
+     [newPoem, router],
+  );
+
+  if (!newPoem) return;
   return (
     <main className="flex h-full flex-row gap-4 px-6 py-4">
-      <Background appearance={poem.appearance.background} />
+      <Background appearance={newPoem.appearance.background} />
       <Poem
-        title={poem.title}
-        text={poem.text}
-        foregroundAppearance={poem.appearance.foreground}
+        title={newPoem.title}
+        text={newPoem.text}
+        foregroundAppearance={newPoem.appearance.foreground}
       />
       <form
-        action={savePoem}
+        onSubmit={handleSavePoem}
         className="absolute bottom-2 right-2 z-20 flex gap-2"
       >
         <Link
