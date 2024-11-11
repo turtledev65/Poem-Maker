@@ -25,6 +25,8 @@ const PreviewPage = () => {
       if (!newPoem) return;
 
       const res = await savePoem(newPoem);
+      localStorage.removeItem("new-poem");
+
       router.replace(`/poem/${res.id}`);
     },
     [newPoem, router],
