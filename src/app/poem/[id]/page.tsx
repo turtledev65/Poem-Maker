@@ -19,6 +19,9 @@ const PoemView = async ({ params }: Props) => {
 
   return (
     <main className="p-2">
+      {poem.appearance.customCSS.enabled && (
+        <style>{poem.appearance.customCSS.css}</style>
+      )}
       <Background appearance={poem.appearance.background} />
       <Poem
         title={poem.title}

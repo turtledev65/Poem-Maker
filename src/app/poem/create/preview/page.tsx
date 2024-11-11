@@ -34,7 +34,10 @@ const PreviewPage = () => {
 
   if (!newPoem) return;
   return (
-    <main className="flex h-full flex-row gap-4 px-6 py-4">
+    <main className="h-full flex-1 px-6 py-4">
+      {newPoem.appearance.customCSS.enabled && (
+        <style>{newPoem.appearance.customCSS.css}</style>
+      )}
       <Background appearance={newPoem.appearance.background} />
       <Poem
         title={newPoem.title}
