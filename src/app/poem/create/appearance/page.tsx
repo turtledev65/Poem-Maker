@@ -15,6 +15,7 @@ import {
   Background as BackgroundType,
   BackgroundColorValue,
 } from "@/types";
+import { removeCustomCss } from "@/util/custom-css";
 
 const AppearancePage = () => {
   const { isNewPoemInitialized, newPoem, setNewPoem } =
@@ -48,6 +49,7 @@ const AppearancePage = () => {
 
   useEffect(() => {
     if (redirectRef.current) {
+      removeCustomCss();
       router.replace("/poem/create/preview");
     }
   }, [redirectRef.current, router]);
