@@ -56,7 +56,7 @@ const AppearancePage = () => {
   }, [redirectRef.current, router]);
 
   return (
-    <main className="container relative flex flex-1 flex-row justify-between px-6 py-4">
+    <main className="main-container relative flex-1 px-6 py-4">
       <AppearanceProvider defaultValue={newPoem?.appearance}>
         <Background />
         <Poem />
