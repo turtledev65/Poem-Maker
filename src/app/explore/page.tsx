@@ -1,6 +1,11 @@
 import { db } from "@/db";
 import { replaceWithBr } from "@/util/text";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Explore",
+};
 
 const ExplorePage = async () => {
   const poems = await db.query.poemTable.findMany({ limit: 20 });
