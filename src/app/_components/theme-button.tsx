@@ -11,7 +11,7 @@ const ThemeToggle = () => {
     <>
       <button
         onClick={() => setMode(prev => (prev === "light" ? "dark" : "light"))}
-        className="rounded-full p-3 text-2xl transition-colors colors hover:bg-slate-100 dark:hover:bg-zinc-800"
+        className="colors rounded-full p-3 text-2xl transition-colors hover:bg-slate-100 dark:hover:bg-zinc-800"
       >
         {mode === "light" ? <FaMoon /> : <FaSun />}
       </button>

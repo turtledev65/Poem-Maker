@@ -5,7 +5,7 @@ import { MdOutlineExplore } from "react-icons/md";
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-20 flex w-full items-center justify-evenly transition-colors border-b-2 border-solid border-b-gray-400 bg-gray-50 p-4 text-lg dark:border-b-gray-600 dark:bg-neutral-900 dark:text-white">
+    <nav className="sticky top-0 z-20 flex w-full items-center justify-evenly border-b-2 border-solid border-b-gray-400 bg-gray-50 p-4 text-lg transition-colors dark:border-b-gray-600 dark:bg-neutral-900 dark:text-white">
       <Link href="/">Poem Maker</Link>
       <div className="flex gap-6">
         <Link
