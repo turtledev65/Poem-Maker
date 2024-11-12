@@ -52,7 +52,7 @@ const EditPoem = () => {
         return out;
       });
     },
-    [setNewPoem, newImage],
+    [setNewPoem, newImageUrl],
   );
 
   useEffect(() => {
