@@ -53,3 +53,4 @@ pnpm dev
 
 ## Credits
 - [FreeSvg](https://freesvg.org/) - used for the [landscape background image](https://freesvg.org/digital-landscape-illustration) on the homepage
+- [react-icons](https://react-icons.github.io/react-icons/) - used for the icons
