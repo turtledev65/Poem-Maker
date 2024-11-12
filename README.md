@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Poem Maker
+A simple web app for making beautiful and interactive poems.
 
-## Getting Started
+## Stack
 
-First, run the development server:
+- [React](https://react.dev/) - Front-end library
+- [NextJS](https://nextjs.org/) - Back-end library for React
+- [Uploadthing](https://uploadthing.com/) - File uploads
+- [Drizzle](https://orm.drizzle.team/) - ORM
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## How to Run
+
+First, clone the repo:
+
+```sh
+git clone https://github.com/turtledev65/Poem-Maker.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go into the newly created directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+cd Poem-Maker
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install dependencies:
 
-## Learn More
+```sh
+npm install
+# or
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Set env variables in a `.env` file:
+```
+DATABASE_URL=
+UPLOADTHING_TOKEN=
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set up your db with:
+```sh
+npm run db:generate
+npm run db:migrate
+# or
+pnpm db:generate
+pnpm db:migrate
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+And now you can run it using:
 
-## Deploy on Vercel
+```sh
+npm run dev
+# or
+pnpm dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Credits
+- [FreeSvg](https://freesvg.org/) - used for the [landscape background image](https://freesvg.org/digital-landscape-illustration) on the homepage
