@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@types/js-cookie": "^3.0.6",
+    "@uploadthing/react": "^7.1.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.1",
     "js-cookie": "^3.0.5",
@@ -22,7 +23,8 @@
     "prettier-plugin-tailwindcss": "^0.6.8",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "tsx": "^4.19.2"
+    "tsx": "^4.19.2",
+    "uploadthing": "^7.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
