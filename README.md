@@ -36,12 +36,10 @@ DATABASE_URL=
 UPLOADTHING_TOKEN=
 ```
 
-Set up your db with:
+Migrate up your Postgres db with:
 ```sh
-npm run db:generate
 npm run db:migrate
 # or
-pnpm db:generate
 pnpm db:migrate
 ```
 
