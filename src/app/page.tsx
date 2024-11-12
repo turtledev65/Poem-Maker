@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MdOutlineExplore, MdArrowRightAlt } from "react-icons/md";
 
 const Home = () => {
   return (
@@ -22,15 +23,17 @@ const Home = () => {
             <div className="flex justify-center gap-6 *:flex-1">
               <Link
                 href="/explore"
-                className="rounded-lg bg-green-500 px-2 py-4 text-xl text-white hover:opacity-90"
+                className="flex items-center justify-center gap-2 rounded-lg bg-green-500 px-2 py-4 text-xl text-white hover:opacity-90"
               >
-                Explore
+                <MdOutlineExplore className="text-3xl" />
+                <p>Explore</p>
               </Link>
               <Link
                 href="/poem/create/edit"
-                className="rounded-lg bg-blue-500 px-2 py-4 text-xl text-white hover:opacity-90"
+                className="flex flex-row items-center justify-center rounded-lg bg-blue-500 px-2 py-4 text-xl text-white  hover:opacity-90"
               >
                 Get Started
+                <MdArrowRightAlt className="text-4xl" />
               </Link>
             </div>
           </div>

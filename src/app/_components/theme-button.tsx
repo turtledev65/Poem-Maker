@@ -2,6 +2,7 @@
 
 import { useContext } from "react";
 import { ThemeContext } from "../_providers/theme-provider";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const ThemeToggle = () => {
   const { mode, setMode } = useContext(ThemeContext);
@@ -10,8 +11,9 @@ const ThemeToggle = () => {
     <>
       <button
         onClick={() => setMode(prev => (prev === "light" ? "dark" : "light"))}
+        className="rounded-full p-3 text-2xl transition-colors colors hover:bg-slate-100 dark:hover:bg-zinc-800"
       >
-        {mode}
+        {mode === "light" ? <FaMoon /> : <FaSun />}
       </button>
     </>
   );
