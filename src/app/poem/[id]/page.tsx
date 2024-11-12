@@ -7,9 +7,9 @@ import Background from "../_components/background";
 import PoemImage from "../_components/poem-image";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: number;
-  };
+  }>;
 };
 const PoemView = async ({ params }: Props) => {
   const { id } = await params;
