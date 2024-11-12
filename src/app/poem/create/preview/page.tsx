@@ -56,7 +56,7 @@ const PreviewPage = () => {
 
   if (!newPoem) return;
   return (
-    <main className="main-container flex h-full flex-1 flex-row justify-between px-6 py-4">
+    <main className="main-container flex flex-1 flex-row justify-between px-6 py-4">
       {newPoem.appearance.customCSS.enabled && (
         <style>{newPoem.appearance.customCSS.css}</style>
       )}
