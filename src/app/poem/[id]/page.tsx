@@ -4,6 +4,7 @@ import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import { poemTable } from "@/db/schema";
 import Background from "../_components/background";
+import PoemImage from "../_components/poem-image";
 
 type Props = {
   params: {
@@ -18,7 +19,7 @@ const PoemView = async ({ params }: Props) => {
   if (!poem) notFound();
 
   return (
-    <main className="p-2">
+    <main className="container flex h-full flex-1 flex-row justify-between px-6 py-4">
       {poem.appearance.customCSS.enabled && (
         <style>{poem.appearance.customCSS.css}</style>
       )}
@@ -28,6 +29,7 @@ const PoemView = async ({ params }: Props) => {
         text={poem.text}
         foregroundAppearance={poem.appearance.foreground}
       />
+      {poem.image && <PoemImage url={poem.image} />}
     </main>
   );
 };

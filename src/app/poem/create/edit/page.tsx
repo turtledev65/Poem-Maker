@@ -1,8 +1,17 @@
 "use client";
-import { FormEvent, useCallback, useContext, useEffect, useRef } from "react";
+import {
+  FormEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Poem } from "@/types";
 import { useRouter } from "next/navigation";
 import { NewPoemContext } from "../_providers/new-poem-provider";
+import PoemImage from "../../_components/poem-image";
 
 const EditPoem = () => {
   const { newPoem, setNewPoem } = useContext(NewPoemContext);
@@ -12,6 +21,12 @@ const EditPoem = () => {
 
   const router = useRouter();
   const redirectRef = useRef(false);
+
+  const [newImage, setNewImage] = useState<File | null>(null);
+  const newImageUrl = useMemo(
+    () => (newImage ? URL.createObjectURL(newImage) : null),
+    [newImage],
+  );
 
   const handleCreatePoem = useCallback(
     (e: FormEvent<HTMLFormElement>) => {
@@ -28,13 +43,16 @@ const EditPoem = () => {
         if (prev) out = { ...prev };
         out.title = title;
         out.text = text;
+        if (newImageUrl) {
+          out.image = newImageUrl;
+        }
 
         redirectRef.current = true;
 
         return out;
       });
     },
-    [setNewPoem],
+    [setNewPoem, newImage],
   );
 
   useEffect(() => {
@@ -67,12 +85,20 @@ const EditPoem = () => {
           />
         </div>
         <div className="flex flex-col justify-center gap-2">
-          <input id="image" type="file" name="image" className="hidden" />
-          <label
-            htmlFor="image"
-            className="grid h-full w-full place-items-center rounded-lg border-2 border-dashed border-gray-600 font-bold text-gray-600"
-          >
-            No Image
+          <label className="grid h-full w-full place-items-center rounded-lg border-2 border-dashed border-gray-600 font-bold text-gray-600">
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={e => {
+                const files = e.target.files;
+                if (!files || files.length === 0) return;
+
+                const file = files[0];
+                setNewImage(file);
+              }}
+            />
+            {newImageUrl ? <PoemImage url={newImageUrl} /> : "No Image"}
           </label>
           <button
             type="submit"

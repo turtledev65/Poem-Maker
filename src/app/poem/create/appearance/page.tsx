@@ -16,6 +16,7 @@ import {
   BackgroundColorValue,
 } from "@/types";
 import { removeCustomCss } from "@/util/custom-css";
+import PoemImage from "../../_components/poem-image";
 
 const AppearancePage = () => {
   const { isNewPoemInitialized, newPoem, setNewPoem } =
@@ -55,12 +56,11 @@ const AppearancePage = () => {
   }, [redirectRef.current, router]);
 
   return (
-    <main className="relative flex-1 px-6 py-4">
+    <main className="container relative flex flex-1 flex-row justify-between px-6 py-4">
       <AppearanceProvider defaultValue={newPoem?.appearance}>
         <Background />
-        <div className="z-10">
-          <Poem />
-        </div>
+        <Poem />
+        {newPoem?.image && <PoemImage url={newPoem.image} />}
         <AppearanceSidebar onSubmit={handleSubmitPoem} />
       </AppearanceProvider>
     </main>
