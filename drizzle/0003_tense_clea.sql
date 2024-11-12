@@ -1,0 +1,1 @@
+ALTER TABLE "poem" ADD COLUMN "image" text;

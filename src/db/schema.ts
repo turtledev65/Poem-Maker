@@ -5,5 +5,6 @@ export const poemTable = pgTable("poem", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   text: text("text").notNull(),
+  image: text("image"),
   appearance: jsonb().$type<Appearance>().notNull(),
 });

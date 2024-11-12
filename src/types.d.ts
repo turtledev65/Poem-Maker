@@ -34,5 +34,6 @@ export type Appearance = {
 export type Poem = {
   title: string;
   text: string;
+  image?: string;
   appearance: Appearance;
 };
