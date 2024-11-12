@@ -23,14 +23,12 @@ const ExplorePage = async () => {
       </div>
       <div className="grid w-full grid-cols-1 gap-4 px-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {poems.map(poem => (
-          <>
-            <PoemPreview
-              title={poem.title}
-              text={poem.text}
-              id={poem.id}
-              key={poem.id}
-            />
-          </>
+          <PoemPreview
+            title={poem.title}
+            text={poem.text}
+            id={poem.id}
+            key={poem.id}
+          />
         ))}
       </div>
     </main>
