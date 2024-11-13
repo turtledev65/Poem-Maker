@@ -65,7 +65,7 @@ const EditPoem = () => {
     <main className="relative flex flex-1 items-stretch p-2">
       <form
         onSubmit={handleCreatePoem}
-        className="flex w-full flex-row gap-4 *:flex-1"
+        className="flex w-full flex-col gap-4 *:flex-1 md:flex-row"
       >
         <div className="flex h-full flex-col gap-2">
           <input
