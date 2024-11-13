@@ -7,19 +7,20 @@ A simple web app for making beautiful and interactive poems.
 - [NextJS](https://nextjs.org/) - Back-end library for React
 - [Uploadthing](https://uploadthing.com/) - File uploads
 - [Drizzle](https://orm.drizzle.team/) - ORM
+- [Railway](https://railway.app/) - Used for hosting a Postgres database
 
 ## How to Run
 
 First, clone the repo:
 
 ```sh
-git clone https://github.com/turtledev65/Poem-Maker.git
+git clone https://github.com/turtledev65/poem-maker.git
 ```
 
 Go into the newly created directory:
 
 ```sh
-cd Poem-Maker
+cd poem-maker
 ```
 
 Install dependencies:
