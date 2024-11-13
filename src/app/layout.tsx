@@ -11,7 +11,7 @@ const RootLayout = ({ children }: Props) => {
     <html lang="en">
       <body>
         <Providers>
-          <div className="flex min-h-screen flex-col bg-gray-50 dark:bg-neutral-950">
+          <div className="flex min-h-dvh flex-col bg-gray-50 dark:bg-neutral-950">
             <Navbar />
             {children}
           </div>

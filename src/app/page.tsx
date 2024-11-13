@@ -30,7 +30,7 @@ const Home = () => {
               </Link>
               <Link
                 href="/poem/create/edit"
-                className="flex flex-row items-center justify-center rounded-lg bg-blue-500 px-2 py-4 text-xl text-white  hover:opacity-90"
+                className="flex flex-row items-center justify-center rounded-lg bg-blue-500 px-2 py-4 text-xl text-white hover:opacity-90"
               >
                 Get Started
                 <MdArrowRightAlt className="text-4xl" />
