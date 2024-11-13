@@ -10,6 +10,7 @@ import { savePoem } from "../actions";
 import { useUploadThing } from "@/util/uploadthing";
 import PoemImage from "../../_components/poem-image";
 import MainContainer from "../../_components/main-container";
+import CustomCss from "../../_components/custom-css";
 
 const PreviewPage = () => {
   const { isNewPoemInitialized, newPoem } = useContext(NewPoemContext);
@@ -59,7 +60,7 @@ const PreviewPage = () => {
   return (
     <MainContainer>
       {newPoem.appearance.customCSS.enabled && (
-        <style>{newPoem.appearance.customCSS.css}</style>
+        <CustomCss css={newPoem.appearance.customCSS.css} />
       )}
       <Background appearance={newPoem.appearance.background} />
       <Poem

@@ -6,6 +6,7 @@ import { poemTable } from "@/db/schema";
 import Background from "../_components/background";
 import PoemImage from "../_components/poem-image";
 import MainContainer from "../_components/main-container";
+import CustomCss from "../_components/custom-css";
 
 type Props = {
   params: Promise<{
@@ -22,7 +23,7 @@ const PoemView = async ({ params }: Props) => {
   return (
     <MainContainer>
       {poem.appearance.customCSS.enabled && (
-        <style>{poem.appearance.customCSS.css}</style>
+        <CustomCss css={poem.appearance.customCSS.css} />
       )}
       <Background appearance={poem.appearance.background} />
       <Poem
