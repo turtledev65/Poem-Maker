@@ -21,6 +21,8 @@ const PreviewPage = () => {
     },
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
   useEffect(() => {
     if (isNewPoemInitialized && !newPoem) {
@@ -34,26 +36,33 @@ const PreviewPage = () => {
       if (!newPoem) return;
       if (isUploading) return;
 
+      setIsLoading(true);
       if (newPoem.image) {
         const file = await convertBlobUrlToFile(newPoem.image);
         startUpload([file]);
       } else {
-        const res = await savePoem({ ...newPoem, image: imageUrl });
-        localStorage.removeItem("new-poem");
-        router.replace(`/poem/${res.id}`);
+        try {
+          const res = await savePoem({ ...newPoem, image: imageUrl });
+          localStorage.removeItem("new-poem");
+          router.replace(`/poem/${res.id}`);
+        } catch (err) {
+          console.error(err);
+        }
       }
     },
-    [newPoem, isUploading, startUpload, imageUrl, router],
+    [newPoem, isUploading, setIsLoading, startUpload, imageUrl, router],
   );
 
   useEffect(() => {
     if (!imageUrl) return;
     if (!newPoem) return;
 
-    savePoem({ ...newPoem, image: imageUrl }).then(res => {
-      localStorage.removeItem("new-poem");
-      router.replace(`/poem/${res.id}`);
-    });
+    savePoem({ ...newPoem, image: imageUrl })
+      .then(res => {
+        localStorage.removeItem("new-poem");
+        router.replace(`/poem/${res.id}`);
+      })
+      .catch(err => console.error(err));
   }, [imageUrl, newPoem, router]);
 
   if (!newPoem) return;
@@ -81,9 +90,9 @@ const PreviewPage = () => {
         </Link>
         <button
           type="submit"
-          className="rounded-lg bg-blue-500 px-6 py-2 text-2xl text-white transition-all hover:opacity-80"
+          className={`rounded-lg bg-blue-500 px-6 py-2 text-2xl text-white transition-all ${isLoading ? "cursor-not-allowed" : "hover:opacity-80"}`}
         >
-          Done
+          {isLoading ? "Saving..." : "Done"}
         </button>
       </form>
     </MainContainer>
