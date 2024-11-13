@@ -9,12 +9,12 @@ const Sidebar = ({ children }: PropsWithChildren) => {
     <div className="absolute bottom-0 right-0 top-0 z-20 flex w-80 items-center justify-end dark:text-white">
       <button
         onClick={() => setExpanded(prev => !prev)}
-        className="-left-2 h-min rounded-l-md border-2 border-r-0 border-solid border-gray-700 bg-white p-2 outline-none dark:border-neutral-600 dark:bg-neutral-900 dark:text-white"
+        className="-left-2 h-min rounded-l-md border-2 border-r-0 border-solid border-gray-700 bg-white p-2 shadow-xl outline-none dark:border-neutral-600 dark:bg-neutral-900 dark:text-white"
       >
         {expanded ? ">" : "<"}
       </button>
       <div
-        className={`h-full overflow-auto rounded-l-xl bg-white transition-all dark:bg-neutral-900 ${expanded ? "w-full p-4" : "w-0 p-0"}`}
+        className={`h-full overflow-auto rounded-l-xl bg-white shadow-xl transition-all dark:bg-neutral-900 ${expanded ? "w-full p-4" : "w-0 p-0"}`}
       >
         {children}
       </div>
