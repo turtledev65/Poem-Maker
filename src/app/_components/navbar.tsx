@@ -6,13 +6,23 @@ import { FaPenFancy } from "react-icons/fa";
 import { MdOutlineExplore } from "react-icons/md";
 import { IoMenuOutline } from "react-icons/io5";
 import { useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
 
   return (
     <nav className="sticky top-0 z-40 flex w-full items-center justify-between border-b-2 border-solid border-b-gray-400 bg-gray-50 p-4 text-lg dark:border-b-gray-600 dark:bg-neutral-900 dark:text-white md:justify-evenly">
-      <Link href="/">Poem Maker</Link>
+      <div className="flex items-center gap-2">
+        <Image
+          src="/images/icon.png"
+          width={32}
+          height={32}
+          alt="Favicon"
+          className="mb-4"
+        />
+        <Link href="/">Poem Maker</Link>
+      </div>
       <button
         onClick={() => setActive(prev => !prev)}
         className="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-zinc-800 md:hidden"
