@@ -28,7 +28,7 @@ const ExplorePage = () => {
         setPoems(res);
         setState("finished");
       })
-      .catch(_ => {
+      .catch(() => {
         setState("error");
       });
   }, [setPoems, setState]);
