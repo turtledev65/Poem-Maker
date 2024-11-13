@@ -3,7 +3,7 @@ import { poemTable } from "@/db/schema";
 import { replaceWithBr } from "@/util/text";
 import { InferSelectModel } from "drizzle-orm";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getAllPoems } from "../poem/create/actions";
 import { AiOutlineLoading } from "react-icons/ai";
 
@@ -12,6 +12,15 @@ const ExplorePage = () => {
   const [state, setState] = useState<"loading" | "error" | "finished">(
     "loading",
   );
+
+  const [search, setSearch] = useState("");
+  const filteredPoems = useMemo(() => {
+    return poems?.filter(poem => {
+      const title = poem.title.trim().toLowerCase();
+      const text = search.trim().toLowerCase();
+      return title.includes(text);
+    });
+  }, [poems, search]);
 
   useEffect(() => {
     getAllPoems()
@@ -36,11 +45,13 @@ const ExplorePage = () => {
           </h1>
           <input
             placeholder="Search"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
             className="rounded-full border-2 border-gray-600 px-3 py-2 text-lg outline-none dark:border-neutral-500 dark:bg-neutral-700 dark:text-white"
           />
         </div>
       </div>
-      {state != "finished" && (
+      {state != "finished" ? (
         <div className="flex flex-1 items-center justify-center">
           {state === "loading" ? (
             <AiOutlineLoading className="animate-spin text-3xl dark:text-white" />
@@ -48,17 +59,18 @@ const ExplorePage = () => {
             <p className="text-lg text-red-500">An unexpected error occurred</p>
           )}
         </div>
+      ) : (
+        <div className="grid w-full grid-cols-1 gap-4 px-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          {filteredPoems?.map(poem => (
+            <PoemPreview
+              title={poem.title}
+              text={poem.text}
+              id={poem.id}
+              key={poem.id}
+            />
+          ))}
+        </div>
       )}
-      <div className="grid w-full grid-cols-1 gap-4 px-8 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-        {poems?.map(poem => (
-          <PoemPreview
-            title={poem.title}
-            text={poem.text}
-            id={poem.id}
-            key={poem.id}
-          />
-        ))}
-      </div>
     </main>
   );
 };
