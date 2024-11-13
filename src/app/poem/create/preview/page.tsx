@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { savePoem } from "../actions";
 import { useUploadThing } from "@/util/uploadthing";
 import PoemImage from "../../_components/poem-image";
+import MainContainer from "../../_components/main-container";
 
 const PreviewPage = () => {
   const { isNewPoemInitialized, newPoem } = useContext(NewPoemContext);
@@ -56,7 +57,7 @@ const PreviewPage = () => {
 
   if (!newPoem) return;
   return (
-    <main className="main-container flex flex-1 flex-row justify-between px-6 py-4">
+    <MainContainer>
       {newPoem.appearance.customCSS.enabled && (
         <style>{newPoem.appearance.customCSS.css}</style>
       )}
@@ -84,7 +85,7 @@ const PreviewPage = () => {
           Done
         </button>
       </form>
-    </main>
+    </MainContainer>
   );
 };
 export default PreviewPage;

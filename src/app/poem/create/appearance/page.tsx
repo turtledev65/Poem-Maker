@@ -17,6 +17,7 @@ import {
 } from "@/types";
 import { removeCustomCss } from "@/util/custom-css";
 import PoemImage from "../../_components/poem-image";
+import MainContainer from "../../_components/main-container";
 
 const AppearancePage = () => {
   const { isNewPoemInitialized, newPoem, setNewPoem } =
@@ -56,14 +57,14 @@ const AppearancePage = () => {
   }, [redirectRef.current, router]);
 
   return (
-    <main className="main-container relative flex flex-1 flex-row justify-between px-6 py-4">
+    <MainContainer>
       <AppearanceProvider defaultValue={newPoem?.appearance}>
         <Background />
         <Poem />
         {newPoem?.image && <PoemImage url={newPoem.image} />}
         <AppearanceSidebar onSubmit={handleSubmitPoem} />
       </AppearanceProvider>
-    </main>
+    </MainContainer>
   );
 };
 export default AppearancePage;

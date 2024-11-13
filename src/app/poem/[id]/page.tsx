@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { poemTable } from "@/db/schema";
 import Background from "../_components/background";
 import PoemImage from "../_components/poem-image";
+import MainContainer from "../_components/main-container";
 
 type Props = {
   params: Promise<{
@@ -19,7 +20,7 @@ const PoemView = async ({ params }: Props) => {
   if (!poem) notFound();
 
   return (
-    <main className="main-container flex h-full flex-1 flex-row justify-between px-6 py-4">
+    <MainContainer>
       {poem.appearance.customCSS.enabled && (
         <style>{poem.appearance.customCSS.css}</style>
       )}
@@ -30,7 +31,7 @@ const PoemView = async ({ params }: Props) => {
         foregroundAppearance={poem.appearance.foreground}
       />
       {poem.image && <PoemImage url={poem.image} />}
-    </main>
+    </MainContainer>
   );
 };
 export default PoemView;
